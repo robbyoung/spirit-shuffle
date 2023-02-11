@@ -3,18 +3,5 @@
     height: 280px;
     border: 4px solid black;
     border-radius: 10px;
-    cursor: pointer;
-
-    @media (prefers-reduced-motion: no-preference) {
-        &.spirit-card:hover {
-            animation-name: card-bounce;
-            animation-timing-function: ease;
-            animation-duration: 1s;
-        }
-    }    
+    cursor: pointer;  
 }
-
-@keyframes card-bounce {
-    0%   { transform: translateY(0); }
-    100%  { transform: translateY(-20px); }
-  }

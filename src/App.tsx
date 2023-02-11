@@ -11,6 +11,7 @@ import title from './images/si-title.png'
 import './App.scss'
 import SpiritCard from './components/spirit-card/spirit-card'
 import { Spirit } from './models/spirit'
+import SpiritDeck from './components/spirit-deck/spirit-deck'
 
 function App() {
   return (
@@ -38,13 +39,17 @@ function App() {
         <img src={beast} className="element spin" alt="logo" />
       </div>
 
-      <div>
-        <SpiritCard spirit={Spirit.Earth} />
-        <SpiritCard spirit={Spirit.River} />
-        <SpiritCard spirit={Spirit.Thunderspeaker} />
-        <SpiritCard spirit={Spirit.Bringer} />
-        <SpiritCard spirit={Spirit.Shadows} />
-      </div>
+      <SpiritDeck
+        spirits={[
+          Spirit.Earth,
+          Spirit.River,
+          Spirit.Thunderspeaker,
+          Spirit.Bringer,
+          Spirit.Shadows,
+          Spirit.Green,
+          Spirit.Ocean,
+        ]}
+      />
     </div>
   )
 }

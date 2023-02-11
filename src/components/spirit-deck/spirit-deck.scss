@@ -1,0 +1,53 @@
+.spirit-deck {
+    padding-left: 200px;
+    display: flex;
+    flex-direction: row-reverse;
+
+    $max-cards: 7;
+    @for $i from $max-cards to -1 {
+        .spirit-card:nth-child(#{$i + 1}) {
+            margin-top: #{$i * 8}px;
+            z-index: $i;
+            margin-left: -200px
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .spirit-card:hover {
+            animation-name: card-bounce;
+            animation-timing-function: ease;
+            animation-duration: 1s;
+        }
+    }
+
+    @keyframes card-bounce {
+        0%   { transform: translateY(0); }
+        100%  { transform: translateY(-100px); }
+    }
+
+    &.shuffle {
+        .spirit-card:nth-child(odd) {
+            animation: card-shuffle-left 2 1s ease-in-out;
+        }
+
+        .spirit-card:nth-child(even) {
+            animation: card-shuffle-right 2 1s ease-in-out;
+        }
+
+        @keyframes card-shuffle-left {
+            0%   { transform: translateX(0px); }
+            25%  { transform: translateX(-150px); }
+            50%  { transform: translateX(0px); }
+            75%  { transform: translateX(150px); }
+            100%  { transform: translateX(0px); }
+        }
+
+        @keyframes card-shuffle-right {
+            0%   { transform: translateX(0px); }
+            25%  { transform: translateX(150px); }
+            50%  { transform: translateX(0px); }
+            75%  { transform: translateX(-150px); }
+            100%  { transform: translateX(0px); }
+        }
+    }
+}

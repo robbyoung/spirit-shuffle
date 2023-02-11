@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .App {
   text-align: center;
 }
@@ -19,8 +21,12 @@
   padding: 3px;
 }
 
-.App-header {
-  background-color: #282c34;
+.title {
+  width: 100px;
+}
+
+.app {
+  background-color: $background-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,10 +34,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes element-spin {

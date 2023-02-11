@@ -9,6 +9,7 @@ import beast from './images/elements/beast.png'
 
 import title from './images/si-title.png'
 import './App.scss'
+import SpiritCard, { Spirit } from './components/spirit-card/spirit-card'
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
         <img src={plant} className="element spin" alt="logo" />
         <img src={beast} className="element spin" alt="logo" />
       </div>
+
+      <SpiritCard spirit={Spirit.Earth} />
     </div>
   )
 }

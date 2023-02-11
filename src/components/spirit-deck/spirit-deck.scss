@@ -1,53 +1,34 @@
 .spirit-deck {
-    padding-left: 200px;
+    $num-cards: 8;
+    $card-padding: 5;
+    $card-width: 208;
+    $card-height: 288;
+
+
     display: flex;
     flex-direction: row-reverse;
+    height: #{$card-height + $card-padding * $num-cards}px;
+    width: #{$card-width + $card-padding * $num-cards}px;
 
-    $max-cards: 7;
-    @for $i from $max-cards to -1 {
-        .spirit-card:nth-child(#{$i + 1}) {
-            margin-top: #{$i * 8}px;
+    @for $i from 0 to $num-cards {
+        $direction: if($i % 2 == 0, 'normal', 'reverse');
+        .card-#{$i} {
+            position: relative;
+            top: #{$i * $card-padding}px;
+            left:  #{$i * -$card-padding}px;
+            margin-left: #{-$card-width}px;
             z-index: $i;
-            margin-left: -200px
+            animation: card-shuffle 1s #{$direction} ease-in-out;
         }
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-        .spirit-card:hover {
-            animation-name: card-bounce;
-            animation-timing-function: ease;
-            animation-duration: 1s;
-        }
+    .spirit-card {
+        transition: all 0.3s 0.5s linear;
     }
 
-    @keyframes card-bounce {
-        0%   { transform: translateY(0); }
-        100%  { transform: translateY(-100px); }
-    }
-
-    &.shuffle {
-        .spirit-card:nth-child(odd) {
-            animation: card-shuffle-left 2 1s ease-in-out;
-        }
-
-        .spirit-card:nth-child(even) {
-            animation: card-shuffle-right 2 1s ease-in-out;
-        }
-
-        @keyframes card-shuffle-left {
-            0%   { transform: translateX(0px); }
-            25%  { transform: translateX(-150px); }
-            50%  { transform: translateX(0px); }
-            75%  { transform: translateX(150px); }
-            100%  { transform: translateX(0px); }
-        }
-
-        @keyframes card-shuffle-right {
-            0%   { transform: translateX(0px); }
-            25%  { transform: translateX(150px); }
-            50%  { transform: translateX(0px); }
-            75%  { transform: translateX(-150px); }
-            100%  { transform: translateX(0px); }
-        }
+    @keyframes card-shuffle {
+        0%   { transform: translateX(0px); }
+        50%  { transform: translateX(-250px); }
+        100%  { transform: translateX(0px); }
     }
 }

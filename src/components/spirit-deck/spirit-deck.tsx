@@ -8,19 +8,39 @@ interface SpiritDeckProps {
 }
 
 function SpiritDeck({ spirits }: SpiritDeckProps) {
-  const [deckState, setDeckState] = useState('')
+  const [order, setOrder] = useState(Object.keys(spirits))
 
   return (
     <>
-      <div className={`spirit-deck ${deckState}`}>
+      <div className={`spirit-deck`}>
         {spirits.map((spirit, i) => (
-          <SpiritCard key={`card-${i}`} spirit={spirit} />
+          <SpiritCard
+            spirit={spirit}
+            className={`card-${order[i]}`}
+            key={`card-${order[i]}`}
+          />
         ))}
       </div>
-      <button onClick={() => setDeckState('shuffle')}>Shuffle</button>
-      <button onClick={() => setDeckState('')}>Reset</button>
+      <button onClick={() => setOrder(shuffleDeck(order))}>Shuffle</button>
     </>
   )
+}
+
+function shuffleDeck<T>(deck: Array<T>): T[] {
+  const newDeck = [...deck]
+  let currentIndex = newDeck.length
+  let randomIndex = 0
+
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+    ;[newDeck[currentIndex], newDeck[randomIndex]] = [
+      newDeck[randomIndex],
+      newDeck[currentIndex],
+    ]
+  }
+
+  return newDeck
 }
 
 export default SpiritDeck

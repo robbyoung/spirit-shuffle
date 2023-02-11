@@ -9,7 +9,6 @@ import beast from './images/elements/beast.png'
 
 import title from './images/si-title.png'
 import './App.scss'
-import SpiritCard from './components/spirit-card/spirit-card'
 import { Spirit } from './models/spirit'
 import SpiritDeck from './components/spirit-deck/spirit-deck'
 
@@ -48,6 +47,7 @@ function App() {
           Spirit.Shadows,
           Spirit.Green,
           Spirit.Ocean,
+          Spirit.Lightning,
         ]}
       />
     </div>

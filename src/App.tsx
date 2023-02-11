@@ -9,12 +9,24 @@ import beast from './images/elements/beast.png'
 
 import title from './images/si-title.png'
 import './App.scss'
-import SpiritCard, { Spirit } from './components/spirit-card/spirit-card'
+import SpiritCard from './components/spirit-card/spirit-card'
+import { Spirit } from './models/spirit'
 
 function App() {
   return (
     <div className="app">
-      <img src={title} className="elemetn"></img>
+      <div className="title">
+        <p>Spirit Shuffle</p>
+      </div>
+
+      <div className="subtitle">
+        <p>
+          <span>A</span>
+          <img src={title} className="inline-title-image"></img>
+          <span>Randomiser</span>
+        </p>
+      </div>
+
       <div>
         <img src={sun} className="element spin" alt="logo" />
         <img src={moon} className="element spin" alt="logo" />
@@ -26,7 +38,13 @@ function App() {
         <img src={beast} className="element spin" alt="logo" />
       </div>
 
-      <SpiritCard spirit={Spirit.Earth} />
+      <div>
+        <SpiritCard spirit={Spirit.Earth} />
+        <SpiritCard spirit={Spirit.River} />
+        <SpiritCard spirit={Spirit.Thunderspeaker} />
+        <SpiritCard spirit={Spirit.Bringer} />
+        <SpiritCard spirit={Spirit.Shadows} />
+      </div>
     </div>
   )
 }

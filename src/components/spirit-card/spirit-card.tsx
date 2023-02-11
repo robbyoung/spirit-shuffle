@@ -1,11 +1,5 @@
+import { getImageForSpirit, Spirit } from '../../models/spirit'
 import './spirit-card.scss'
-
-export enum Spirit {
-  Lightning = 'lightning',
-  Earth = 'earth',
-  Green = 'green',
-  Thunderspeaker = 'thunderspeaker',
-}
 
 interface SpiritCardProps {
   spirit: Spirit
@@ -13,11 +7,7 @@ interface SpiritCardProps {
 
 function SpiritCard({ spirit }: SpiritCardProps) {
   return (
-    <img
-      src={`../../images/spirits/${spirit}.png`}
-      alt={spirit}
-      className="spirit-card"
-    />
+    <img src={getImageForSpirit(spirit)} alt={spirit} className="spirit-card" />
   )
 }
 

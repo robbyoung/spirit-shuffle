@@ -11,24 +11,47 @@
     width: #{$card-width + $card-padding * $num-cards}px;
 
     @for $i from 0 to $num-cards {
-        $direction: if($i % 2 == 0, 'normal', 'reverse');
         .card-#{$i} {
             position: relative;
-            top: #{$i * $card-padding}px;
-            left:  #{$i * -$card-padding}px;
-            margin-left: #{-$card-width}px;
-            z-index: $i;
-            animation: card-shuffle 1s #{$direction} ease-in-out;
+            &.card-animate-enter-active {
+                top: #{$i * $card-padding}px;
+                left:  #{$i * -$card-padding}px;
+                margin-left: #{-$card-width}px;
+                z-index: $i;
+
+                transition: all 0.6s #{$i / 4}s ease;
+                animation: card-shuffle 1s #{$i / 4}s
+            }
+
+            &.card-animate-enter-done {
+                top: #{$i * $card-padding}px;
+                left:  #{$i * -$card-padding}px;
+                margin-left: #{-$card-width}px;
+                z-index: $i;
+            }
+
+            &.card-animate-exit, &.card-animate-exit-active, &.card-animate-exit-done {
+                top: #{$i * $card-padding}px;
+                left:  #{$i * -$card-padding}px;
+                margin-left: #{-$card-width}px;
+                z-index: $i;
+            }
+            
+            @keyframes card-shuffle {
+                0%   { transform: translateX(0px); }
+                50%  { transform: translateX(-250px); }
+                100%  { transform: translateX(0px); }
+            }
         }
-    }
 
-    .spirit-card {
-        transition: all 0.3s 0.5s linear;
-    }
-
-    @keyframes card-shuffle {
-        0%   { transform: translateX(0px); }
-        50%  { transform: translateX(-250px); }
-        100%  { transform: translateX(0px); }
+        .prev-card-#{$i} {
+            &.card-animate-enter {
+                position: relative;
+                top: #{$i * $card-padding}px;
+                left:  #{$i * -$card-padding}px;
+                margin-left: #{-$card-width}px;
+                z-index: $i;
+            }
+        }
     }
 }

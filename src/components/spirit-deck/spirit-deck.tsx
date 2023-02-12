@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import usePrevious from '../../hooks/use-previous'
 import { Spirit } from '../../models/spirit'
 import SpiritCard from '../spirit-card/spirit-card'
 import './spirit-deck.scss'
@@ -9,15 +10,16 @@ interface SpiritDeckProps {
 
 function SpiritDeck({ spirits }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits))
+  const prevOrder = usePrevious(order) || []
 
   return (
     <>
       <div className={`spirit-deck`}>
         {spirits.map((spirit, i) => (
           <SpiritCard
-            spirit={spirit}
-            className={`card-${order[i]}`}
             key={`card-${order[i]}`}
+            spirit={spirit}
+            className={`card-${order[i]} prev-card-${prevOrder[i]}`}
           />
         ))}
       </div>

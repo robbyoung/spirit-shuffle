@@ -10,20 +10,32 @@ interface SpiritDeckProps {
 
 function SpiritDeck({ spirits }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits))
-  const prevOrder = usePrevious(order) || []
+  const [hasBeenClicked, setHasBeenClicked] = useState(false)
+  const prevOrder = usePrevious(order) || order
+
+  function onDeckClick() {
+    if (!hasBeenClicked) {
+      setHasBeenClicked(true)
+      setOrder(shuffleDeck(order))
+    }
+  }
 
   return (
     <>
-      <div className={`spirit-deck`}>
+      <div
+        className={`spirit-deck ${hasBeenClicked ? 'disabled' : 'clickable'}`}
+        onClick={() => onDeckClick()}
+      >
         {spirits.map((spirit, i) => (
           <SpiritCard
             key={`card-${order[i]}`}
             spirit={spirit}
+            animate={hasBeenClicked}
+            timeout={spirits.length * 500}
             className={`card-${order[i]} prev-card-${prevOrder[i]}`}
           />
         ))}
       </div>
-      <button onClick={() => setOrder(shuffleDeck(order))}>Shuffle</button>
     </>
   )
 }

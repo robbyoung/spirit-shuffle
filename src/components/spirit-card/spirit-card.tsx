@@ -1,28 +1,24 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { getImageForSpirit, Spirit } from '../../models/spirit'
 import './spirit-card.scss'
 
 interface SpiritCardProps {
   spirit: Spirit
+  animate?: boolean
   className?: string
+  timeout?: number
 }
 
-function SpiritCard({ spirit, className }: SpiritCardProps) {
+function SpiritCard({ spirit, className, animate, timeout }: SpiritCardProps) {
   const nodeRef = useRef(null)
-  const [animate, setAnimate] = useState(false)
-
-  useEffect(() => {
-    setAnimate(true)
-  }, [className])
 
   return (
     <CSSTransition
       nodeRef={nodeRef}
       classNames={`card-animate`}
       in={animate}
-      onEntered={() => setAnimate(false)}
-      timeout={5000}
+      timeout={timeout || 1000}
     >
       <img
         src={getImageForSpirit(spirit)}

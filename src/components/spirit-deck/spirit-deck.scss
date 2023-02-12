@@ -33,7 +33,7 @@
     }
 
     @for $i from 0 to $num-cards {
-        $delay: calc($i / 4);
+        $delay: calc(($num-cards - $i) / 4);
         .card-#{$i} {
             &.card-animate-enter-active {
                 transition: all 0.5s #{$delay}s ease;

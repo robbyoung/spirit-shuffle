@@ -38,18 +38,7 @@ function App() {
         <img src={beast} className="element spin" alt="logo" />
       </div>
 
-      <SpiritDeck
-        spirits={[
-          Spirit.Earth,
-          Spirit.River,
-          Spirit.Thunderspeaker,
-          Spirit.Bringer,
-          Spirit.Shadows,
-          Spirit.Green,
-          Spirit.Ocean,
-          Spirit.Lightning,
-        ]}
-      />
+      <SpiritDeck spirits={Object.values(Spirit).reverse()} />
     </div>
   )
 }

@@ -33,18 +33,34 @@
     }
 
     @for $i from 0 to $num-cards {
-        $delay: calc(($num-cards - $i) / 4);
+        $delay: random(100) * 0.01;
         .card-#{$i} {
             &.card-animate-enter-active {
                 transition: all 0.5s #{$delay}s ease;
                 animation: card-shuffle 1s #{$delay}s ease-in-out
             }
 
-            &.card-animate-enter-active, &.card-animate-enter-done, &.card-animate-exit, &.card-animate-exit-active, &.card-animate-exit-done {
+            &.card-animate-enter-active, &.card-animate-enter-done, &.card-animate-exit {
                 top: #{$i * $card-padding}px;
                 left:  #{$i * -$card-padding}px;
                 margin-left: #{-$card-width}px;
                 z-index: $i;
+            }
+
+            &.card-animate-exit-active {
+                transition: all 0.5s #{$i * 0.05}s ease;
+            }
+
+            &.card-animate-exit-active {
+                top: -100px;
+                left:  #{$card-padding}px;
+                margin-left: #{-$card-width}px;
+                z-index: $i;
+                opacity: 0;
+            }
+
+            &.card-animate-exit-done {
+                display: none;
             }
         }
     }
@@ -59,10 +75,9 @@
 
     @keyframes card-shuffle {
         0%   { transform: translateX(0px); }
-        25%  { transform: translateX(-250px); }
-        50%   { transform: translateX(0px); }
+        25%  {transform: translateX(250px);}
         75%  { transform: translateX(-250px); }
-        100%  { transform: translateX(0px); }
+        100%   { transform: translateX(0px); }
     }
 }
 

@@ -31,7 +31,6 @@ function SpiritDeck({ spirits }: SpiritDeckProps) {
             key={`card-${order[i]}`}
             spirit={spirit}
             animate={hasBeenClicked}
-            timeout={spirits.length * 500}
             className={`card-${order[i]} prev-card-${prevOrder[i]}`}
           />
         ))}

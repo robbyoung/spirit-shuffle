@@ -1,17 +1,17 @@
-import { useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
-import { getImageForSpirit, Spirit } from '../../models/spirit'
-import './spirit-card.scss'
+import { useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { getImageForSpirit, Spirit } from '../../models/spirit';
+import './spirit-card.scss';
 
 interface SpiritCardProps {
-  spirit: Spirit
-  animate?: boolean
-  className?: string
-  timeout?: number
+  spirit: Spirit;
+  animate?: boolean;
+  className?: string;
+  timeout?: number;
 }
 
 function SpiritCard({ spirit, className, animate, timeout }: SpiritCardProps) {
-  const nodeRef = useRef(null)
+  const nodeRef = useRef(null);
 
   return (
     <CSSTransition
@@ -27,7 +27,7 @@ function SpiritCard({ spirit, className, animate, timeout }: SpiritCardProps) {
         className={`spirit-card ${className}`}
       />
     </CSSTransition>
-  )
+  );
 }
 
-export default SpiritCard
+export default SpiritCard;

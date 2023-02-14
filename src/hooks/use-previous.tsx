@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 interface State<T> {
-  current: T
-  previous: T | undefined
+  current: T;
+  previous: T | undefined;
 }
 
 function usePrevious<T>(value: T) {
   const [state, updateState] = useState({
     current: value,
     previous: undefined,
-  } as State<T>)
+  } as State<T>);
 
   useEffect(() => {
-    updateState({ current: value, previous: state.current })
-  }, [value])
+    updateState({ current: value, previous: state.current });
+  }, [value]);
 
-  return state.previous
+  return state.previous;
 }
 
-export default usePrevious
+export default usePrevious;

@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import usePrevious from '../../hooks/use-previous'
-import { Spirit } from '../../models/spirit'
-import SpiritCard from '../spirit-card/spirit-card'
-import './spirit-deck.scss'
+import { useState } from 'react';
+import usePrevious from '../../hooks/use-previous';
+import { Spirit } from '../../models/spirit';
+import SpiritCard from '../spirit-card/spirit-card';
+import './spirit-deck.scss';
 
 interface SpiritDeckProps {
-  spirits: Spirit[]
+  spirits: Spirit[];
 }
 
 function SpiritDeck({ spirits }: SpiritDeckProps) {
-  const [order, setOrder] = useState(Object.keys(spirits))
-  const [hasBeenClicked, setHasBeenClicked] = useState(false)
-  const prevOrder = usePrevious(order) || order
+  const [order, setOrder] = useState(Object.keys(spirits));
+  const [hasBeenClicked, setHasBeenClicked] = useState(false);
+  const prevOrder = usePrevious(order) || order;
 
   function onDeckClick() {
     if (!hasBeenClicked) {
-      setHasBeenClicked(true)
-      setOrder(shuffleDeck(order))
+      setHasBeenClicked(true);
+      setOrder(shuffleDeck(order));
     }
   }
 
@@ -37,24 +37,24 @@ function SpiritDeck({ spirits }: SpiritDeckProps) {
         ))}
       </div>
     </>
-  )
+  );
 }
 
 function shuffleDeck<T>(deck: Array<T>): T[] {
-  const newDeck = [...deck]
-  let currentIndex = newDeck.length
-  let randomIndex = 0
+  const newDeck = [...deck];
+  let currentIndex = newDeck.length;
+  let randomIndex = 0;
 
   while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex--
-    ;[newDeck[currentIndex], newDeck[randomIndex]] = [
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [newDeck[currentIndex], newDeck[randomIndex]] = [
       newDeck[randomIndex],
       newDeck[currentIndex],
-    ]
+    ];
   }
 
-  return newDeck
+  return newDeck;
 }
 
-export default SpiritDeck
+export default SpiritDeck;

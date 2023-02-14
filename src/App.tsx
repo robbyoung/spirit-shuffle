@@ -1,16 +1,16 @@
-import sun from './images/elements/sun.png'
-import moon from './images/elements/moon.png'
-import fire from './images/elements/fire.png'
-import sky from './images/elements/sky.png'
-import water from './images/elements/water.png'
-import mountain from './images/elements/mountain.png'
-import plant from './images/elements/plant.png'
-import beast from './images/elements/beast.png'
+import sun from './images/elements/sun.png';
+import moon from './images/elements/moon.png';
+import fire from './images/elements/fire.png';
+import sky from './images/elements/sky.png';
+import water from './images/elements/water.png';
+import mountain from './images/elements/mountain.png';
+import plant from './images/elements/plant.png';
+import beast from './images/elements/beast.png';
 
-import title from './images/si-title.png'
-import './App.scss'
-import { Spirit } from './models/spirit'
-import SpiritDeck from './components/spirit-deck/spirit-deck'
+import title from './images/si-title.png';
+import './App.scss';
+import { Spirit } from './models/spirit';
+import SpiritDeck from './components/spirit-deck/spirit-deck';
 
 function App() {
   return (
@@ -40,7 +40,7 @@ function App() {
 
       <SpiritDeck spirits={Object.values(Spirit).reverse()} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

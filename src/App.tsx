@@ -38,7 +38,7 @@ function App() {
         <img src={beast} className="element spin" alt="logo" />
       </div>
 
-      <SpiritDeck spirits={Object.values(Spirit).reverse()} />
+      <SpiritDeck spirits={Object.values(Spirit).reverse()} selectCount={1} />
     </div>
   );
 }

@@ -6,9 +6,10 @@ import './spirit-deck.scss';
 
 interface SpiritDeckProps {
   spirits: Spirit[];
+  selectCount: number;
 }
 
-function SpiritDeck({ spirits }: SpiritDeckProps) {
+function SpiritDeck({ spirits, selectCount }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits));
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
   const prevOrder = usePrevious(order) || order;
@@ -23,7 +24,9 @@ function SpiritDeck({ spirits }: SpiritDeckProps) {
   return (
     <>
       <div
-        className={`spirit-deck ${hasBeenClicked ? 'disabled' : 'clickable'}`}
+        className={`spirit-deck ${
+          hasBeenClicked ? 'disabled' : 'clickable'
+        } size-${order.length}`}
         onClick={() => onDeckClick()}
       >
         {spirits.map((spirit, i) => (
@@ -31,7 +34,11 @@ function SpiritDeck({ spirits }: SpiritDeckProps) {
             key={`card-${order[i]}`}
             spirit={spirit}
             animate={hasBeenClicked}
-            className={`card-${order[i]} prev-card-${prevOrder[i]}`}
+            className={`card-${order[i]} prev-card-${prevOrder[i]} ${
+              hasBeenClicked && order.length - parseInt(order[i]) <= selectCount
+                ? 'selected'
+                : ''
+            }`}
           />
         ))}
       </div>

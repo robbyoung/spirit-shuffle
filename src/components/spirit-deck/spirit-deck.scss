@@ -1,13 +1,12 @@
+@import '../../variables.scss';
+
 .spirit-deck {
-    $num-cards: 30;
-    $card-padding: 5;
-    $card-width: 208;
-    $card-height: 288;
+    $max-cards: 30;
+    $card-padding-top: 5;
+    $card-padding-left: 5;
 
     display: flex;
     flex-direction: row-reverse;
-    height: #{$card-height + $card-padding * $num-cards}px;
-    width: #{$card-width + $card-padding * $num-cards}px;
 
     &.clickable {
         cursor: pointer;
@@ -22,17 +21,24 @@
         cursor: default;
     }
 
-    @for $i from 0 to $num-cards {
+    @for $i from 1 to $max-cards+1 {
+        &.size-#{$i} {
+            height: #{$card-height + $card-padding-top * $i}px;
+            width: #{$card-width + $card-padding-left * $i}px;
+        }
+    }
+
+    @for $i from 0 to $max-cards {
         .prev-card-#{$i} {
             position: relative;
-            top: #{$i * $card-padding}px;
-            left:  #{$i * -$card-padding}px;
+            top: #{$i * $card-padding-top}px;
+            left:  #{$i * -$card-padding-left}px;
             margin-left: #{-$card-width}px;
             z-index: $i;
         }
     }
 
-    @for $i from 0 to $num-cards {
+    @for $i from 0 to $max-cards {
         $delay: random(100) * 0.01;
         .card-#{$i} {
             &.card-animate-enter-active {
@@ -41,19 +47,19 @@
             }
 
             &.card-animate-enter-active, &.card-animate-enter-done, &.card-animate-exit {
-                top: #{$i * $card-padding}px;
-                left:  #{$i * -$card-padding}px;
+                top: #{$i * $card-padding-top}px;
+                left:  #{$i * -$card-padding-left}px;
                 margin-left: #{-$card-width}px;
                 z-index: $i;
             }
 
             &.card-animate-exit-active {
-                transition: all 0.5s #{$i * 0.05}s ease;
+                transition: all 0.5s #{$i * 0.01}s ease;
             }
 
             &.card-animate-exit-active {
                 top: -100px;
-                left:  #{$card-padding}px;
+                left:  #{$card-padding-left}px;
                 margin-left: #{-$card-width}px;
                 z-index: $i;
                 opacity: 0;
@@ -61,6 +67,21 @@
 
             &.card-animate-exit-done {
                 display: none;
+            }
+
+            &.selected {
+                &.card-animate-exit-active {
+                    transition: all 0.4s #{$i * 0.02}s ease;
+                }
+
+                &.card-animate-exit-active, &.card-animate-exit-done  {
+                    display: block;
+                    top: #{calc($i / 4) * $card-padding-top}px;;
+                    left:  #{calc($i / 2) * -$card-padding-left}px;
+                    margin-left: 5px;
+                    z-index: $i;
+                    opacity: 1;
+                }
             }
         }
     }
@@ -75,8 +96,8 @@
 
     @keyframes card-shuffle {
         0%   { transform: translateX(0px); }
-        25%  {transform: translateX(250px);}
-        75%  { transform: translateX(-250px); }
+        25%  {transform: translateX(#{$card-width + 10}px);}
+        75%  { transform: translateX(#{-$card-width - 10}px); }
         100%   { transform: translateX(0px); }
     }
 }

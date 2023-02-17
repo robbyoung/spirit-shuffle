@@ -1,32 +1,32 @@
-import bringer from '../images/spirits/bringer.png'
-import lightning from '../images/spirits/lightning.png'
-import earth from '../images/spirits/earth.png'
-import thunderspeaker from '../images/spirits/thunderspeaker.png'
-import ocean from '../images/spirits/ocean.png'
-import river from '../images/spirits/river.png'
-import shadows from '../images/spirits/shadows.png'
-import green from '../images/spirits/green.png'
-import fangs from '../images/spirits/fangs.png'
-import keeper from '../images/spirits/keeper.png'
-import wildfire from '../images/spirits/wildfire.png'
-import serpent from '../images/spirits/serpent.png'
-import stone from '../images/spirits/stone.png'
-import memory from '../images/spirits/memory.png'
-import trickster from '../images/spirits/trickster.png'
-import lure from '../images/spirits/lure.png'
-import minds from '../images/spirits/minds.png'
-import volcano from '../images/spirits/volcano.png'
-import shroud from '../images/spirits/shroud.png'
-import vengeance from '../images/spirits/vengeance.png'
-import starlight from '../images/spirits/starlight.png'
-import fractured from '../images/spirits/fractured.png'
-import downpour from '../images/spirits/downpour.png'
-import finder from '../images/spirits/finder.png'
-import teeth from '../images/spirits/teeth.png'
-import eyes from '../images/spirits/eyes.png'
-import mud from '../images/spirits/mud.png'
-import heat from '../images/spirits/heat.png'
-import whirlwind from '../images/spirits/whirlwind.png'
+import bringer from '../images/spirits/bringer.png';
+import lightning from '../images/spirits/lightning.png';
+import earth from '../images/spirits/earth.png';
+import thunderspeaker from '../images/spirits/thunderspeaker.png';
+import ocean from '../images/spirits/ocean.png';
+import river from '../images/spirits/river.png';
+import shadows from '../images/spirits/shadows.png';
+import green from '../images/spirits/green.png';
+import fangs from '../images/spirits/fangs.png';
+import keeper from '../images/spirits/keeper.png';
+import wildfire from '../images/spirits/wildfire.png';
+import serpent from '../images/spirits/serpent.png';
+import stone from '../images/spirits/stone.png';
+import memory from '../images/spirits/memory.png';
+import trickster from '../images/spirits/trickster.png';
+import lure from '../images/spirits/lure.png';
+import minds from '../images/spirits/minds.png';
+import volcano from '../images/spirits/volcano.png';
+import shroud from '../images/spirits/shroud.png';
+import vengeance from '../images/spirits/vengeance.png';
+import starlight from '../images/spirits/starlight.png';
+import fractured from '../images/spirits/fractured.png';
+import downpour from '../images/spirits/downpour.png';
+import finder from '../images/spirits/finder.png';
+import teeth from '../images/spirits/teeth.png';
+import eyes from '../images/spirits/eyes.png';
+import mud from '../images/spirits/mud.png';
+import heat from '../images/spirits/heat.png';
+import whirlwind from '../images/spirits/whirlwind.png';
 
 export enum Spirit {
   Lightning = "Lightning's Swift Strike",
@@ -63,62 +63,62 @@ export enum Spirit {
 export function getImageForSpirit(spirit: Spirit): string {
   switch (spirit) {
     case Spirit.Lightning:
-      return lightning
+      return lightning;
     case Spirit.Earth:
-      return earth
+      return earth;
     case Spirit.Thunderspeaker:
-      return thunderspeaker
+      return thunderspeaker;
     case Spirit.Bringer:
-      return bringer
+      return bringer;
     case Spirit.Ocean:
-      return ocean
+      return ocean;
     case Spirit.River:
-      return river
+      return river;
     case Spirit.Shadows:
-      return shadows
+      return shadows;
     case Spirit.Green:
-      return green
+      return green;
     case Spirit.Fangs:
-      return fangs
+      return fangs;
     case Spirit.Keeper:
-      return keeper
+      return keeper;
     case Spirit.Wildfire:
-      return wildfire
+      return wildfire;
     case Spirit.Serpent:
-      return serpent
+      return serpent;
     case Spirit.Stone:
-      return stone
+      return stone;
     case Spirit.Memory:
-      return memory
+      return memory;
     case Spirit.Trickster:
-      return trickster
+      return trickster;
     case Spirit.Lure:
-      return lure
+      return lure;
     case Spirit.Minds:
-      return minds
+      return minds;
     case Spirit.Volcano:
-      return volcano
+      return volcano;
     case Spirit.Shroud:
-      return shroud
+      return shroud;
     case Spirit.Vengeance:
-      return vengeance
+      return vengeance;
     case Spirit.Starlight:
-      return starlight
+      return starlight;
     case Spirit.Fractured:
-      return fractured
+      return fractured;
     case Spirit.Downpour:
-      return downpour
+      return downpour;
     case Spirit.Finder:
-      return finder
+      return finder;
     case Spirit.Teeth:
-      return teeth
+      return teeth;
     case Spirit.Eyes:
-      return eyes
+      return eyes;
     case Spirit.Mud:
-      return mud
+      return mud;
     case Spirit.Heat:
-      return heat
+      return heat;
     case Spirit.Whirlwind:
-      return whirlwind
+      return whirlwind;
   }
 }

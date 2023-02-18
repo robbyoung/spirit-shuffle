@@ -2,10 +2,15 @@ import './icon-button.scss';
 
 interface IconButtonProps {
   icon: JSX.Element;
+  onClick: () => void;
 }
 
-function SpiritDeck({ icon }: IconButtonProps) {
-  return <button>{icon}</button>;
+function IconButton({ icon, onClick }: IconButtonProps) {
+  return (
+    <button className="icon-button" onClick={onClick}>
+      {icon}
+    </button>
+  );
 }
 
-export default SpiritDeck;
+export default IconButton;

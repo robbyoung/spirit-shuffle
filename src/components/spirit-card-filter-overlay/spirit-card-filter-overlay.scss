@@ -1,0 +1,46 @@
+@import '../../variables.scss';
+
+.spirit-card-filter-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+
+    &.hidden {
+        display: none;
+    }
+
+    .spirit-list {
+        position: fixed;
+        z-index: 41;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .spirit-card {
+            width: 100px;
+            height: 140px;
+            margin: 4px;
+            cursor: pointer;
+        }
+    }
+
+    .background {
+        opacity: 0.8;
+        background-color: $primary-color;
+        position: absolute;
+        top: 0px;
+        z-index: 40;
+        width: 100%;
+        height: 100%;
+    }
+
+    .button-header {
+        padding: 10px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        z-index: 41;
+    }
+}

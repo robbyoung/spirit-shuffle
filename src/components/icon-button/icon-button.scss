@@ -1,1 +1,13 @@
 @import '../../variables.scss';
+
+.icon-button {
+    width: 65px;
+    height: 65px;
+    font-size: 40px;
+    border-radius: 20px;
+    background-color: $secondary-color;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

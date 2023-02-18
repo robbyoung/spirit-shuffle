@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import usePrevious from '../../hooks/use-previous';
 import { Spirit } from '../../models/spirit';
 import SpiritCard from '../spirit-card/spirit-card';
@@ -7,17 +7,23 @@ import './spirit-deck.scss';
 interface SpiritDeckProps {
   spirits: Spirit[];
   selectCount: number;
+  onShuffle: () => void;
 }
 
-function SpiritDeck({ spirits, selectCount }: SpiritDeckProps) {
+function SpiritDeck({ spirits, selectCount, onShuffle }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits));
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
   const prevOrder = usePrevious(order) || order;
+
+  useMemo(() => {
+    setOrder(Object.keys(spirits));
+  }, [spirits]);
 
   function onDeckClick() {
     if (!hasBeenClicked) {
       setHasBeenClicked(true);
       setOrder(shuffleDeck(order));
+      onShuffle();
     }
   }
 
@@ -29,7 +35,7 @@ function SpiritDeck({ spirits, selectCount }: SpiritDeckProps) {
         } size-${order.length}`}
         onClick={() => onDeckClick()}
       >
-        {spirits.map((spirit, i) => (
+        {[...spirits].reverse().map((spirit, i) => (
           <SpiritCard
             key={`card-${order[i]}`}
             spirit={spirit}

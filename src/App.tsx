@@ -12,16 +12,24 @@ function App() {
 
   const [showFilterOverlay, setShowFilterOverlay] = useState(false);
   const [selectedSpirits, setSelectedSpirits] = useState(availableSpirits);
+  const [allowEdits, setAllowEdits] = useState(true);
 
   return (
     <div className="app">
       <Header />
       <div className="body">
-        <SpiritDeck spirits={[...availableSpirits].reverse()} selectCount={1} />
-        <IconButton
-          icon={<HiPencil />}
-          onClick={() => setShowFilterOverlay(true)}
-        ></IconButton>
+        <SpiritDeck
+          spirits={selectedSpirits}
+          selectCount={1}
+          onShuffle={() => setAllowEdits(false)}
+        />
+        <div className={`${allowEdits ? '' : 'hidden'}`}>
+          <IconButton
+            icon={<HiPencil />}
+            tooltip="Edit Deck Contents"
+            onClick={() => allowEdits && setShowFilterOverlay(true)}
+          ></IconButton>
+        </div>
       </div>
       <SpiritCardFilterOverlay
         show={showFilterOverlay}

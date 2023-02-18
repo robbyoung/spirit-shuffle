@@ -7,9 +7,10 @@ interface SpiritCardProps {
   spirit: Spirit;
   animate?: boolean;
   className?: string;
+  onClick?: () => void;
 }
 
-function SpiritCard({ spirit, className, animate }: SpiritCardProps) {
+function SpiritCard({ spirit, className, animate, onClick }: SpiritCardProps) {
   const nodeRef = useRef(null);
   const [notDone, updateNotDone] = useState(true);
 
@@ -26,6 +27,7 @@ function SpiritCard({ spirit, className, animate }: SpiritCardProps) {
         alt={spirit}
         ref={nodeRef}
         className={`spirit-card ${className}`}
+        onClick={onClick}
       />
     </CSSTransition>
   );

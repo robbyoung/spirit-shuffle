@@ -17,26 +17,47 @@ function SpiritCardFilterOverlay({
   availableSpirits,
   selectedSpirits,
   onDismiss,
+  onSelectionChange,
 }: SpiritCardFilterOverlayProps) {
   return (
-    <div className={`spirit-card-filter-overlay ${show ? '' : 'hidden'}`}>
-      <div className="button-header">
-        <IconButton icon={<RxCross1 />} onClick={onDismiss} />
+    <>
+      <div className={`background ${show ? '' : 'hidden'}`} />
+      <div className={`spirit-card-filter-overlay ${show ? '' : 'hidden'}`}>
+        <div className="button-header">
+          <IconButton
+            icon={<RxCross1 />}
+            tooltip="Go Back"
+            onClick={onDismiss}
+          />
+        </div>
+        <div className="spirit-list">
+          {availableSpirits.map((spirit, i) => (
+            <SpiritCard
+              key={`card-${i}`}
+              spirit={spirit}
+              className={`${
+                selectedSpirits.includes(spirit) ? 'selected' : 'unselected'
+              }`}
+              onClick={() =>
+                onSelectionChange(filterSelection(selectedSpirits, spirit))
+              }
+            ></SpiritCard>
+          ))}
+        </div>
       </div>
-      <div className="spirit-list">
-        {availableSpirits.map((spirit, i) => (
-          <SpiritCard
-            key={`card-${i}`}
-            spirit={spirit}
-            className={`${
-              selectedSpirits.includes(spirit) ? 'selected' : 'unselected'
-            }`}
-          ></SpiritCard>
-        ))}
-      </div>
-      <div className="background" />
-    </div>
+    </>
   );
+}
+
+function filterSelection(current: Spirit[], clicked: Spirit): Spirit[] {
+  const index = current.indexOf(clicked);
+  const copy = [...current];
+  if (index > -1) {
+    copy.length > 3 && copy.splice(index, 1);
+    return copy;
+  } else {
+    return [...copy, clicked];
+  }
 }
 
 export default SpiritCardFilterOverlay;

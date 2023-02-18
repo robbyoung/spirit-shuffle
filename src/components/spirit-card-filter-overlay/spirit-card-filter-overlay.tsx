@@ -5,7 +5,6 @@ import { RxCross1 } from 'react-icons/rx';
 import './spirit-card-filter-overlay.scss';
 
 interface SpiritCardFilterOverlayProps {
-  show: boolean;
   availableSpirits: Spirit[];
   selectedSpirits: Spirit[];
   onDismiss: () => void;
@@ -13,7 +12,6 @@ interface SpiritCardFilterOverlayProps {
 }
 
 function SpiritCardFilterOverlay({
-  show,
   availableSpirits,
   selectedSpirits,
   onDismiss,
@@ -21,8 +19,8 @@ function SpiritCardFilterOverlay({
 }: SpiritCardFilterOverlayProps) {
   return (
     <>
-      <div className={`background ${show ? '' : 'hidden'}`} />
-      <div className={`spirit-card-filter-overlay ${show ? '' : 'hidden'}`}>
+      <div className="background" />
+      <div className="spirit-card-filter-overlay">
         <div className="button-header">
           <IconButton
             icon={<RxCross1 />}
@@ -39,7 +37,9 @@ function SpiritCardFilterOverlay({
                 selectedSpirits.includes(spirit) ? 'selected' : 'unselected'
               }`}
               onClick={() =>
-                onSelectionChange(filterSelection(selectedSpirits, spirit))
+                onSelectionChange(
+                  filterSelection(selectedSpirits, spirit, availableSpirits)
+                )
               }
             ></SpiritCard>
           ))}
@@ -49,14 +49,20 @@ function SpiritCardFilterOverlay({
   );
 }
 
-function filterSelection(current: Spirit[], clicked: Spirit): Spirit[] {
+function filterSelection(
+  current: Spirit[],
+  clicked: Spirit,
+  preferredOrder: Spirit[]
+): Spirit[] {
   const index = current.indexOf(clicked);
   const copy = [...current];
   if (index > -1) {
     copy.length > 3 && copy.splice(index, 1);
     return copy;
   } else {
-    return [...copy, clicked];
+    return [...copy, clicked].sort(
+      (a, b) => preferredOrder.indexOf(a) - preferredOrder.indexOf(b)
+    );
   }
 }
 

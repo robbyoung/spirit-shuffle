@@ -10,12 +10,7 @@ $content-z-index: 41;
     top: 0px;
     z-index: $content-z-index;
     overflow-y: scroll;
-
-
-    &.hidden {
-        display: none;
-    }
-
+    
     .button-header {
         padding: 10px;
         position: relative;

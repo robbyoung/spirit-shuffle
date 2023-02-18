@@ -23,21 +23,22 @@ function App() {
           selectCount={1}
           onShuffle={() => setAllowEdits(false)}
         />
-        <div className={`${allowEdits ? '' : 'hidden'}`}>
+        {allowEdits && (
           <IconButton
             icon={<HiPencil />}
             tooltip="Edit Deck Contents"
             onClick={() => allowEdits && setShowFilterOverlay(true)}
           ></IconButton>
-        </div>
+        )}
       </div>
-      <SpiritCardFilterOverlay
-        show={showFilterOverlay}
-        availableSpirits={availableSpirits}
-        selectedSpirits={selectedSpirits}
-        onDismiss={() => setShowFilterOverlay(false)}
-        onSelectionChange={setSelectedSpirits}
-      />
+      {showFilterOverlay && (
+        <SpiritCardFilterOverlay
+          availableSpirits={availableSpirits}
+          selectedSpirits={selectedSpirits}
+          onDismiss={() => setShowFilterOverlay(false)}
+          onSelectionChange={setSelectedSpirits}
+        />
+      )}
     </div>
   );
 }

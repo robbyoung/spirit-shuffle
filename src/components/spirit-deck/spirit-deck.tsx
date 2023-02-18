@@ -13,7 +13,11 @@ interface SpiritDeckProps {
 function SpiritDeck({ spirits, selectCount, onShuffle }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits));
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
+
   const prevOrder = usePrevious(order) || order;
+  while (prevOrder.length < order.length) {
+    prevOrder.push(order[prevOrder.length]);
+  }
 
   useMemo(() => {
     setOrder(Object.keys(spirits));

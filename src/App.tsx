@@ -7,15 +7,12 @@ import IconButton from './components/icon-button/icon-button';
 import { useState } from 'react';
 import SpiritCardFilterOverlay from './components/spirit-card-filter-overlay/spirit-card-filter-overlay';
 import BoardDealer from './components/board-dealer/board-dealer';
-import { getRemainingBoards } from './models/board';
-import useQueryState from './hooks/use-query-state';
+import useAvailableSpirits from './hooks/use-available-spirits';
+import useAvailableBoards from './hooks/use-available-boards';
 
 function App() {
-  const availableSpirits = Object.values(Spirit);
-  const availableBoards = getRemainingBoards([], true);
-
-  const queryState = useQueryState();
-  console.dir(queryState);
+  const availableSpirits = useAvailableSpirits();
+  const availableBoards = useAvailableBoards();
 
   const [showFilterOverlay, setShowFilterOverlay] = useState(false);
   const [selectedSpirits, setSelectedSpirits] = useState(availableSpirits);

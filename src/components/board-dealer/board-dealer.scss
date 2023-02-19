@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+.board {
+    width: 300px;
+    transform: rotate(-10deg) scale(0);
+
+    &.deal-board-enter-active {
+        transition: all 0.5s 3s linear;
+        animation: board-spin 0.5s 3s linear;
+        transform: rotate(-10deg) scale(1);
+    }
+
+    &.deal-board-enter-done {
+        transform: rotate(-10deg) scale(1);
+    }
+
+    @keyframes board-spin {
+        0%   { transform: rotate(-10deg) scale(0)  }
+        25%  { transform: rotate(80deg) scale(0.25) }
+        50%   { transform: rotate(170deg) scale(0.5); }
+        75%   { transform: rotate(260deg) scale(0.75) }
+        100% { transform: rotate(350deg) scale(1) }
+    }
+}
+

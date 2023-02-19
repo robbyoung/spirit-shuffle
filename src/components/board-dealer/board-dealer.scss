@@ -5,8 +5,8 @@
     transform: rotate(-10deg) scale(0);
 
     &.deal-board-enter-active {
-        transition: all 0.5s 3s linear;
-        animation: board-spin 0.5s 3s linear;
+        transition: all 0.5s 0s linear;
+        animation: board-spin 0.5s 0s linear;
         transform: rotate(-10deg) scale(1);
     }
 

@@ -6,13 +6,14 @@ import './spirit-deck.scss';
 
 interface SpiritDeckProps {
   spirits: Spirit[];
-  selectCount: number;
   onShuffle: () => void;
+  onDealt: (spirit: Spirit) => void;
 }
 
-function SpiritDeck({ spirits, selectCount, onShuffle }: SpiritDeckProps) {
+function SpiritDeck({ spirits, onShuffle, onDealt }: SpiritDeckProps) {
   const [order, setOrder] = useState(Object.keys(spirits));
   const [hasBeenClicked, setHasBeenClicked] = useState(false);
+  const [hasBeenDealt, setHasBeenDealt] = useState(false);
 
   const prevOrder = usePrevious(order) || order;
   while (prevOrder.length < order.length) {
@@ -31,12 +32,17 @@ function SpiritDeck({ spirits, selectCount, onShuffle }: SpiritDeckProps) {
     }
   }
 
+  function onAnimationFinished() {
+    if (!hasBeenDealt) {
+      setHasBeenDealt(true);
+      onDealt(spirits[parseInt(order[order.length - 1])]);
+    }
+  }
+
   return (
     <>
       <div
-        className={`spirit-deck ${
-          hasBeenClicked ? 'disabled' : 'clickable'
-        } size-${order.length}`}
+        className={`spirit-deck shuffled-${hasBeenClicked} dealt-${hasBeenDealt} size-${order.length}`}
         onClick={() => onDeckClick()}
       >
         {[...spirits].reverse().map((spirit, i) => (
@@ -45,10 +51,11 @@ function SpiritDeck({ spirits, selectCount, onShuffle }: SpiritDeckProps) {
             spirit={spirit}
             animate={hasBeenClicked}
             className={`card-${order[i]} prev-card-${prevOrder[i]} ${
-              hasBeenClicked && order.length - parseInt(order[i]) <= selectCount
+              hasBeenClicked && parseInt(order[i]) == order.length - 1
                 ? 'selected'
                 : ''
             }`}
+            onFinished={onAnimationFinished}
           />
         ))}
       </div>

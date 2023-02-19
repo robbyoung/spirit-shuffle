@@ -8,9 +8,16 @@ interface SpiritCardProps {
   animate?: boolean;
   className?: string;
   onClick?: () => void;
+  onFinished?: () => void;
 }
 
-function SpiritCard({ spirit, className, animate, onClick }: SpiritCardProps) {
+function SpiritCard({
+  spirit,
+  className,
+  animate,
+  onClick,
+  onFinished,
+}: SpiritCardProps) {
   const nodeRef = useRef(null);
   const [notDone, updateNotDone] = useState(true);
 
@@ -20,6 +27,7 @@ function SpiritCard({ spirit, className, animate, onClick }: SpiritCardProps) {
       classNames={`card-animate`}
       in={animate && notDone}
       onEntered={() => updateNotDone(false)}
+      onExited={onFinished}
       timeout={2000}
     >
       <img

@@ -10,7 +10,14 @@
     margin-top: 20px;
     margin-bottom: 20px;
 
-    &.clickable {
+    @for $i from 1 to $max-cards+1 {
+        &.size-#{$i} {
+            height: #{$card-height + $card-padding-top * $i}px;
+            width: #{$card-width + $card-padding-left * $i}px;
+        }
+    }
+
+    &.shuffled-false {
         cursor: pointer;
 
         &:hover {
@@ -19,15 +26,12 @@
         }
     }
 
-    &.disabled {
+    &.shuffled-true {
         cursor: default;
     }
 
-    @for $i from 1 to $max-cards+1 {
-        &.size-#{$i} {
-            height: #{$card-height + $card-padding-top * $i}px;
-            width: #{$card-width + $card-padding-left * $i}px;
-        }
+    &.dealt-true {
+        height: #{$card-height}px;
     }
 
     @for $i from 0 to $max-cards {
@@ -78,7 +82,7 @@
 
                 &.card-animate-exit-active, &.card-animate-exit-done  {
                     display: block;
-                    top: #{calc($i / 4) * $card-padding-top}px;;
+                    top: 0px;
                     left:  #{calc($i / 2) * -$card-padding-left}px;
                     margin-left: 5px;
                     z-index: $i;

@@ -16,6 +16,7 @@ function App() {
   const [showFilterOverlay, setShowFilterOverlay] = useState(false);
   const [selectedSpirits, setSelectedSpirits] = useState(availableSpirits);
   const [allowEdits, setAllowEdits] = useState(true);
+  const [spirit, setSpirit] = useState<Spirit | undefined>(undefined);
 
   return (
     <div className="app">
@@ -23,8 +24,8 @@ function App() {
       <div className="body">
         <SpiritDeck
           spirits={selectedSpirits}
-          selectCount={1}
           onShuffle={() => setAllowEdits(false)}
+          onDealt={(spirit) => setSpirit(spirit)}
         />
         {allowEdits && (
           <IconButton
@@ -35,7 +36,7 @@ function App() {
         )}
         <BoardDealer
           availableBoards={availableBoards}
-          animate={!allowEdits}
+          animate={spirit !== undefined}
           onDealt={() => undefined}
         />
       </div>

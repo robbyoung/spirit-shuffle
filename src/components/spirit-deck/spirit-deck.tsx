@@ -32,11 +32,9 @@ function SpiritDeck({ spirits, onShuffle, onDealt }: SpiritDeckProps) {
     }
   }
 
-  function onAnimationFinished() {
-    if (!hasBeenDealt) {
-      setHasBeenDealt(true);
-      onDealt(spirits[parseInt(order[order.length - 1])]);
-    }
+  function onAnimationFinished(spirit: Spirit) {
+    setHasBeenDealt(true);
+    onDealt(spirit);
   }
 
   return (
@@ -45,19 +43,21 @@ function SpiritDeck({ spirits, onShuffle, onDealt }: SpiritDeckProps) {
         className={`spirit-deck shuffled-${hasBeenClicked} dealt-${hasBeenDealt} size-${order.length}`}
         onClick={() => onDeckClick()}
       >
-        {[...spirits].reverse().map((spirit, i) => (
-          <SpiritCard
-            key={`card-${order[i]}`}
-            spirit={spirit}
-            animate={hasBeenClicked}
-            className={`card-${order[i]} prev-card-${prevOrder[i]} ${
-              hasBeenClicked && parseInt(order[i]) == order.length - 1
-                ? 'selected'
-                : ''
-            }`}
-            onFinished={onAnimationFinished}
-          />
-        ))}
+        {[...spirits].reverse().map((spirit, i) => {
+          const selected =
+            hasBeenClicked && parseInt(order[i]) == order.length - 1;
+          return (
+            <SpiritCard
+              key={`card-${order[i]}`}
+              spirit={spirit}
+              animate={hasBeenClicked}
+              className={`card-${order[i]} prev-card-${prevOrder[i]} ${
+                selected ? 'selected' : ''
+              }`}
+              onFinished={() => selected && onAnimationFinished(spirit)}
+            />
+          );
+        })}
       </div>
     </>
   );

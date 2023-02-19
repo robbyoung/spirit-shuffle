@@ -1,5 +1,5 @@
 import './board-dealer.scss';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Board, getImageForBoard } from '../../models/board';
 import { CSSTransition } from 'react-transition-group';
 
@@ -11,7 +11,7 @@ interface BoardDealerProps {
 
 function BoardDealer({ animate, availableBoards, onDealt }: BoardDealerProps) {
   const nodeRef = useRef(null);
-  const board = getRandomBoard(availableBoards);
+  const board = useMemo(() => getRandomBoard(availableBoards), []);
 
   return (
     <CSSTransition
@@ -20,7 +20,7 @@ function BoardDealer({ animate, availableBoards, onDealt }: BoardDealerProps) {
       classNames={`deal-board`}
       in={animate}
       onEntered={() => onDealt(board)}
-      timeout={3500}
+      timeout={1000}
     >
       <img
         src={getImageForBoard(board)}

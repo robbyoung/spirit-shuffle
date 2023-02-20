@@ -1,0 +1,46 @@
+@import '../../variables.scss';
+
+.player-summary {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+
+        p {
+            margin: 0px;
+        }
+
+        .spirit-name, .board-name {
+            font-weight: bold;
+        }
+    }
+
+    .images {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+
+        .spirit-card {
+            width: #{calc($card-width / 2)}px;
+            height: #{calc($card-height / 2)}px;
+            border-width: 2px;
+        }
+
+        .board {
+            width: 150px;
+            height: 100px;
+            transform: rotate(-30deg) scale(1);
+            margin-right: -25px;
+        }
+    }
+}

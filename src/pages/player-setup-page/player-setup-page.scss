@@ -6,4 +6,12 @@
   align-items: center;
   justify-content: center;
   overflow-x: hidden;
+
+  .icon-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+  }
 }

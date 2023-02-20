@@ -9,7 +9,7 @@ import useAvailableSpirits from '../../hooks/use-available-spirits';
 import useAvailableBoards from '../../hooks/use-available-boards';
 import { Board } from '../../models/board';
 import { HiPencil } from 'react-icons/hi';
-import { BsFillPersonPlusFill } from 'react-icons/bs';
+import { BsFillPersonPlusFill, BsCheckLg } from 'react-icons/bs';
 import useQueryState from '../../hooks/use-query-state';
 import { getPlayerUrlKey } from '../../models/player';
 
@@ -25,8 +25,8 @@ function PlayerSetupPage() {
   const [spirit, setSpirit] = useState<Spirit | undefined>(undefined);
   const [board, setBoard] = useState<Board | undefined>(undefined);
 
-  const allowNextPlayer =
-    spirit !== undefined && board !== undefined && numPlayers < 5;
+  const setupFinished = spirit !== undefined && board !== undefined;
+  const allowNextPlayer = setupFinished && numPlayers < 5;
 
   return (
     <div className="body">
@@ -35,34 +35,52 @@ function PlayerSetupPage() {
         onShuffle={() => setAllowEdits(false)}
         onDealt={setSpirit}
       />
-      {allowEdits && (
-        <IconButton
-          icon={<HiPencil />}
-          tooltip="Edit Deck Contents"
-          onClick={() => allowEdits && setShowFilterOverlay(true)}
-        ></IconButton>
-      )}
       <BoardDealer
         availableBoards={availableBoards}
         animate={spirit !== undefined}
         onDealt={setBoard}
       />
-      {allowNextPlayer && (
-        <IconButton
-          icon={<BsFillPersonPlusFill />}
-          tooltip="Next Player"
-          onClick={() => {
-            const playerKey = getPlayerUrlKey({
-              spirit,
-              board,
-            });
+      <div className="icon-bar">
+        {allowEdits && (
+          <IconButton
+            icon={<HiPencil />}
+            tooltip="Edit Deck Contents"
+            onClick={() => allowEdits && setShowFilterOverlay(true)}
+          ></IconButton>
+        )}
+        {allowNextPlayer && (
+          <IconButton
+            icon={<BsFillPersonPlusFill />}
+            tooltip="Next Player"
+            onClick={() => {
+              const playerKey = getPlayerUrlKey({
+                spirit,
+                board,
+              });
 
-            const params = window.location.search.split('&');
-            params.push(`p${numPlayers + 1}=${playerKey}`);
-            window.location.search = params.join('&');
-          }}
-        ></IconButton>
-      )}
+              const params = window.location.search.split('&');
+              params.push(`p${numPlayers + 1}=${playerKey}`);
+              window.location.search = params.join('&');
+            }}
+          ></IconButton>
+        )}
+        {setupFinished && (
+          <IconButton
+            icon={<BsCheckLg />}
+            tooltip="All Players Set Up"
+            onClick={() => {
+              const playerKey = getPlayerUrlKey({
+                spirit,
+                board,
+              });
+
+              const params = window.location.search.split('&');
+              params.push(`p${numPlayers + 1}=${playerKey}`);
+              window.location.replace(`summary${params.join('&')}`);
+            }}
+          ></IconButton>
+        )}
+      </div>
       {showFilterOverlay && (
         <SpiritCardFilterOverlay
           availableSpirits={availableSpirits}

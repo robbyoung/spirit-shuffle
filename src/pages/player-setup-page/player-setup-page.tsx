@@ -58,7 +58,9 @@ function PlayerSetupPage() {
                 board,
               });
 
-              const params = window.location.search.split('&');
+              const params = window.location.search
+                .split('&')
+                .filter((param) => param !== '');
               params.push(`p${numPlayers + 1}=${playerKey}`);
               window.location.search = params.join('&');
             }}
@@ -74,9 +76,13 @@ function PlayerSetupPage() {
                 board,
               });
 
-              const params = window.location.search.split('&');
+              const params = window.location.search
+                .split('&')
+                .filter((param) => param !== '');
               params.push(`p${numPlayers + 1}=${playerKey}`);
-              window.location.replace(`summary${params.join('&')}`);
+              window.location.assign(
+                `summary${params.length === 1 ? '?' : ''}${params.join('&')}`
+              );
             }}
           ></IconButton>
         )}

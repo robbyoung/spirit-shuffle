@@ -30,6 +30,7 @@ function PlayerSetupPage() {
 
   return (
     <div className="body">
+      <h2 className="title">Player {numPlayers + 1}</h2>
       <SpiritDeck
         spirits={selectedSpirits}
         onShuffle={() => setAllowEdits(false)}

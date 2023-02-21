@@ -1,0 +1,12 @@
+@import '../../variables.scss';
+
+.box-button {
+    width: 70%;
+    max-width: 400px;
+    margin-top: 20px;
+    cursor: pointer;
+
+    &.unselected {
+        filter: grayscale(1)
+    }
+}

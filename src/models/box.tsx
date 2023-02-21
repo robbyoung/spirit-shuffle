@@ -30,11 +30,12 @@ export function getImageForBox(board: Box): string {
 export function getBoxesUrlKey(boxes: Box[]): string {
   return boxes
     .map((box) => Object.keys(Box)[Object.values(Box).indexOf(box)])
-    .join('');
+    .join('')
+    .toLowerCase();
 }
 
 export function boxesFromUrlKey(key: string): Box[] {
   return Object.keys(Box)
-    .filter((boxKey) => key.includes(boxKey))
+    .filter((boxKey) => key.toUpperCase().includes(boxKey))
     .map((boxKey) => Object.values(Box)[Object.keys(Box).indexOf(boxKey)]);
 }

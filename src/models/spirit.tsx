@@ -27,6 +27,7 @@ import eyes from '../images/spirits/eyes.png';
 import mud from '../images/spirits/mud.png';
 import heat from '../images/spirits/heat.png';
 import whirlwind from '../images/spirits/whirlwind.png';
+import { Box } from './box';
 
 export enum Spirit {
   Lightning = "Lightning's Swift Strike",
@@ -120,5 +121,44 @@ export function getImageForSpirit(spirit: Spirit): string {
       return heat;
     case Spirit.Whirlwind:
       return whirlwind;
+  }
+}
+
+export function spiritIncludedInBoxes(spirit: Spirit, boxes: Box[]): boolean {
+  switch (spirit) {
+    case Spirit.Lightning:
+    case Spirit.Earth:
+    case Spirit.Thunderspeaker:
+    case Spirit.Bringer:
+    case Spirit.Ocean:
+    case Spirit.River:
+    case Spirit.Shadows:
+    case Spirit.Green:
+      return boxes.includes(Box.SI);
+    case Spirit.Fangs:
+    case Spirit.Keeper:
+      return boxes.includes(Box.BC);
+    case Spirit.Stone:
+    case Spirit.Memory:
+    case Spirit.Trickster:
+    case Spirit.Lure:
+    case Spirit.Minds:
+    case Spirit.Volcano:
+    case Spirit.Shroud:
+    case Spirit.Vengeance:
+    case Spirit.Starlight:
+    case Spirit.Fractured:
+      return boxes.includes(Box.JE);
+    case Spirit.Wildfire:
+    case Spirit.Serpent:
+    case Spirit.Downpour:
+    case Spirit.Finder:
+      return boxes.includes(Box.FF);
+    case Spirit.Teeth:
+    case Spirit.Eyes:
+    case Spirit.Mud:
+    case Spirit.Heat:
+    case Spirit.Whirlwind:
+      return boxes.includes(Box.HZ);
   }
 }

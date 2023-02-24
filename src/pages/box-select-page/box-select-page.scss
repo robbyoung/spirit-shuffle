@@ -2,6 +2,22 @@
 
 .box-select-page {
     .icon-button {
-        margin: 20px;
+        margin-top: 20px;
+    }
+
+    .error-message {
+        width: 80%;
+        text-align: center;
+        color: $error-color;
+        margin-top: 5px;
+        margin-bottom: 0px;
+
+        &.hide {
+            opacity: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 20px;
+        }
     }
 }

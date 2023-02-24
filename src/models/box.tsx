@@ -39,3 +39,12 @@ export function boxesFromUrlKey(key: string): Box[] {
     .filter((boxKey) => key.toUpperCase().includes(boxKey))
     .map((boxKey) => Object.values(Box)[Object.keys(Box).indexOf(boxKey)]);
 }
+
+export function validateBoxSelection(boxes: Box[]): string | undefined {
+  if (boxes.length == 0) {
+    return 'Must select at least one box';
+  }
+  if (!boxes.includes(Box.SI) && !boxes.includes(Box.HZ)) {
+    return 'Must include either Base Game or Horizons in selection';
+  }
+}

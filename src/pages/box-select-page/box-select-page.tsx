@@ -15,6 +15,7 @@ function BoxSelectPage() {
 
   return (
     <div className="body box-select-page">
+      <h2 className="title">Select your boxes</h2>
       <BoxGrid selected={selectedBoxes} onSelectionChange={setSelectedBoxes} />
       <IconButton
         icon={<BsCheckLg />}

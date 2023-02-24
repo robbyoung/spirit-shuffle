@@ -6,8 +6,8 @@ import horizons from '../images/boxes/horizons.png';
 
 export enum Box {
   SI = 'Spirit Island',
-  JE = 'Jagged Earth',
   BC = 'Branch and Claw',
+  JE = 'Jagged Earth',
   FF = 'Feather and Flame',
   HZ = 'Horizons of Spirit Island',
 }

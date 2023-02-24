@@ -30,135 +30,135 @@ import whirlwind from '../images/spirits/whirlwind.png';
 import { Box } from './box';
 
 export enum Spirit {
-  Lightning = "Lightning's Swift Strike",
-  River = 'River Surges in Sunlight',
-  Earth = 'Vital Strength of the Earth',
-  Shadows = 'Shadows Flicker Like Flame',
-  Thunderspeaker = 'Thunderspeaker',
-  Green = 'A Spread of Rampant Green',
-  Ocean = "Ocean's Hungry Grasp",
-  Bringer = 'Bringer of Dreams and Nightmares',
-  Fangs = 'Sharp Fangs Behind the Leaves',
-  Keeper = 'Keeper of the Forbidden Wilds',
-  Wildfire = 'Heart of the Wildfire',
-  Serpent = 'Serpent Slumbering Beneath the Island',
-  Stone = "Stone's Unyielding Defiance",
-  Memory = 'Shifting Memory of Ages',
-  Trickster = 'Grinning Trickster Stirs Up Trouble',
-  Lure = 'Lure of the Deep Wilderness',
-  Minds = 'Many Minds Move as One',
-  Volcano = 'Volcano Looming High',
-  Shroud = 'Shroud of Silent Mist',
-  Vengeance = 'Vengeance as a Burning Plague',
-  Starlight = 'Starlight Seeks Its Form',
-  Fractured = 'Fractured Days Split the Sky',
-  Downpour = 'Downpour Drenches the World',
-  Finder = 'Finder of Paths Unseen',
-  Teeth = 'Devouring Teeth Lurk Underfoot',
-  Eyes = 'Eyes Watch From the Trees',
-  Mud = 'Fathomless Mud of the Swamp',
-  Heat = 'Rising Heat of Stone and Sand',
-  Whirlwind = 'Sun-Bright Whirlwind',
+  LSS = "Lightning's Swift Strike",
+  RSS = 'River Surges in Sunlight',
+  VSE = 'Vital Strength of the Earth',
+  SFF = 'Shadows Flicker Like Flame',
+  TSR = 'Thunderspeaker',
+  SRG = 'A Spread of Rampant Green',
+  OHG = "Ocean's Hungry Grasp",
+  BOD = 'Bringer of Dreams and Nightmares',
+  SFL = 'Sharp Fangs Behind the Leaves',
+  KFW = 'Keeper of the Forbidden Wilds',
+  HWF = 'Heart of the Wildfire',
+  SSB = 'Serpent Slumbering Beneath the Island',
+  SYD = "Stone's Unyielding Defiance",
+  SMA = 'Shifting Memory of Ages',
+  GTT = 'Grinning Trickster Stirs Up Trouble',
+  LDW = 'Lure of the Deep Wilderness',
+  MMM = 'Many Minds Move as One',
+  VLH = 'Volcano Looming High',
+  SSM = 'Shroud of Silent Mist',
+  VBP = 'Vengeance as a Burning Plague',
+  SSF = 'Starlight Seeks Its Form',
+  FDS = 'Fractured Days Split the Sky',
+  DDW = 'Downpour Drenches the World',
+  FPU = 'Finder of Paths Unseen',
+  DTU = 'Devouring Teeth Lurk Underfoot',
+  EWT = 'Eyes Watch From the Trees',
+  FMS = 'Fathomless Mud of the Swamp',
+  RHS = 'Rising Heat of Stone and Sand',
+  SBW = 'Sun-Bright Whirlwind',
 }
 
 export function getImageForSpirit(spirit: Spirit): string {
   switch (spirit) {
-    case Spirit.Lightning:
+    case Spirit.LSS:
       return lightning;
-    case Spirit.Earth:
+    case Spirit.VSE:
       return earth;
-    case Spirit.Thunderspeaker:
+    case Spirit.TSR:
       return thunderspeaker;
-    case Spirit.Bringer:
+    case Spirit.BOD:
       return bringer;
-    case Spirit.Ocean:
+    case Spirit.OHG:
       return ocean;
-    case Spirit.River:
+    case Spirit.RSS:
       return river;
-    case Spirit.Shadows:
+    case Spirit.SFF:
       return shadows;
-    case Spirit.Green:
+    case Spirit.SRG:
       return green;
-    case Spirit.Fangs:
+    case Spirit.SFL:
       return fangs;
-    case Spirit.Keeper:
+    case Spirit.KFW:
       return keeper;
-    case Spirit.Wildfire:
+    case Spirit.HWF:
       return wildfire;
-    case Spirit.Serpent:
+    case Spirit.SSB:
       return serpent;
-    case Spirit.Stone:
+    case Spirit.SYD:
       return stone;
-    case Spirit.Memory:
+    case Spirit.SMA:
       return memory;
-    case Spirit.Trickster:
+    case Spirit.GTT:
       return trickster;
-    case Spirit.Lure:
+    case Spirit.LDW:
       return lure;
-    case Spirit.Minds:
+    case Spirit.MMM:
       return minds;
-    case Spirit.Volcano:
+    case Spirit.VLH:
       return volcano;
-    case Spirit.Shroud:
+    case Spirit.SSM:
       return shroud;
-    case Spirit.Vengeance:
+    case Spirit.VBP:
       return vengeance;
-    case Spirit.Starlight:
+    case Spirit.SSF:
       return starlight;
-    case Spirit.Fractured:
+    case Spirit.FDS:
       return fractured;
-    case Spirit.Downpour:
+    case Spirit.DDW:
       return downpour;
-    case Spirit.Finder:
+    case Spirit.FPU:
       return finder;
-    case Spirit.Teeth:
+    case Spirit.DTU:
       return teeth;
-    case Spirit.Eyes:
+    case Spirit.EWT:
       return eyes;
-    case Spirit.Mud:
+    case Spirit.FMS:
       return mud;
-    case Spirit.Heat:
+    case Spirit.RHS:
       return heat;
-    case Spirit.Whirlwind:
+    case Spirit.SBW:
       return whirlwind;
   }
 }
 
 export function spiritIncludedInBoxes(spirit: Spirit, boxes: Box[]): boolean {
   switch (spirit) {
-    case Spirit.Lightning:
-    case Spirit.Earth:
-    case Spirit.Thunderspeaker:
-    case Spirit.Bringer:
-    case Spirit.Ocean:
-    case Spirit.River:
-    case Spirit.Shadows:
-    case Spirit.Green:
+    case Spirit.LSS:
+    case Spirit.VSE:
+    case Spirit.TSR:
+    case Spirit.BOD:
+    case Spirit.OHG:
+    case Spirit.RSS:
+    case Spirit.SFF:
+    case Spirit.SRG:
       return boxes.includes(Box.SI);
-    case Spirit.Fangs:
-    case Spirit.Keeper:
+    case Spirit.SFL:
+    case Spirit.KFW:
       return boxes.includes(Box.BC);
-    case Spirit.Stone:
-    case Spirit.Memory:
-    case Spirit.Trickster:
-    case Spirit.Lure:
-    case Spirit.Minds:
-    case Spirit.Volcano:
-    case Spirit.Shroud:
-    case Spirit.Vengeance:
-    case Spirit.Starlight:
-    case Spirit.Fractured:
+    case Spirit.SYD:
+    case Spirit.SMA:
+    case Spirit.GTT:
+    case Spirit.LDW:
+    case Spirit.MMM:
+    case Spirit.VLH:
+    case Spirit.SSM:
+    case Spirit.VBP:
+    case Spirit.SSF:
+    case Spirit.FDS:
       return boxes.includes(Box.JE);
-    case Spirit.Wildfire:
-    case Spirit.Serpent:
-    case Spirit.Downpour:
-    case Spirit.Finder:
+    case Spirit.HWF:
+    case Spirit.SSB:
+    case Spirit.DDW:
+    case Spirit.FPU:
       return boxes.includes(Box.FF);
-    case Spirit.Teeth:
-    case Spirit.Eyes:
-    case Spirit.Mud:
-    case Spirit.Heat:
-    case Spirit.Whirlwind:
+    case Spirit.DTU:
+    case Spirit.EWT:
+    case Spirit.FMS:
+    case Spirit.RHS:
+    case Spirit.SBW:
       return boxes.includes(Box.HZ);
   }
 }

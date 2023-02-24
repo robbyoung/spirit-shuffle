@@ -11,11 +11,11 @@ export function getPlayerUrlKey(player: Player): string {
     Object.keys(Spirit)[Object.values(Spirit).indexOf(player.spirit)];
   const boardId =
     Object.keys(Board)[Object.values(Board).indexOf(player.board)];
-  return `${spiritId}-${boardId}`;
+  return `${spiritId}-${boardId}`.toLowerCase();
 }
 
 export function playerFromUrlKey(key: string): Player {
-  const split = key.split('-');
+  const split = key.toUpperCase().split('-');
   const spirit = Object.values(Spirit)[Object.keys(Spirit).indexOf(split[0])];
   const board = Object.values(Board)[Object.keys(Board).indexOf(split[1])];
 

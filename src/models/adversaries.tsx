@@ -84,3 +84,29 @@ export function getImageForAdversary(adversary: Adversary): string {
 export function adversaryIncludedInBoxes(adversary: Adversary, boxes: Box[]) {
   return boxes.includes(adversary.box);
 }
+
+export function getRandomAdversary(
+  adversaries: Adversary[],
+  minDifficulty: number,
+  maxDifficulty: number
+): { adversary: Adversary; difficultyIndex: number } {
+  const adversary = adversaries[Math.floor(Math.random() * adversaries.length)];
+
+  const difficulties = adversary.difficulties
+    .map((difficulty, index) => ({
+      difficulty,
+      index,
+    }))
+    .filter(
+      (option) =>
+        option.difficulty >= minDifficulty && option.difficulty <= maxDifficulty
+    );
+
+  if (difficulties.length == 0) {
+    throw 'None of the given adversaries can fulfill the difficulty requirement';
+  }
+
+  const difficulty =
+    difficulties[Math.floor(Math.random() * difficulties.length)];
+  return { adversary, difficultyIndex: difficulty.index };
+}

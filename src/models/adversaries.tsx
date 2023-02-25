@@ -1,3 +1,11 @@
+import brandenburg from '../images/adversaries/brandenburg.png';
+import england from '../images/adversaries/brandenburg.png';
+import sweden from '../images/adversaries/brandenburg.png';
+import france from '../images/adversaries/brandenburg.png';
+import habsburg from '../images/adversaries/brandenburg.png';
+import russia from '../images/adversaries/brandenburg.png';
+import scotland from '../images/adversaries/brandenburg.png';
+
 import { Box } from './box';
 
 export interface Adversary {
@@ -51,6 +59,27 @@ export const allAdversaries: Adversary[] = [
     box: Box.FF,
   },
 ];
+
+export function getImageForAdversary(adversary: Adversary): string {
+  switch (adversary.key) {
+    case 'bp':
+      return brandenburg;
+    case 'en':
+      return england;
+    case 'sw':
+      return sweden;
+    case 'fr':
+      return france;
+    case 'hb':
+      return habsburg;
+    case 'ru':
+      return russia;
+    case 'sc':
+      return scotland;
+    default:
+      throw `Unknown adversary code ${adversary.key}`;
+  }
+}
 
 export function adversaryIncludedInBoxes(adversary: Adversary, boxes: Box[]) {
   return boxes.includes(adversary.box);

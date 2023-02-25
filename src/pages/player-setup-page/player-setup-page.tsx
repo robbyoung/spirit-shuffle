@@ -82,7 +82,7 @@ function PlayerSetupPage() {
                 .filter((param) => param !== '');
               params.push(`p${numPlayers + 1}=${playerKey}`);
               window.location.assign(
-                `summary${params.length === 1 ? '?' : ''}${params.join('&')}`
+                `difficulty${params.length === 1 ? '?' : ''}${params.join('&')}`
               );
             }}
           ></IconButton>

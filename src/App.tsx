@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PlayerSetupPage from './pages/player-setup-page/player-setup-page';
 import SummaryPage from './pages/summary-page/summary-page';
 import BoxSelectPage from './pages/box-select-page/box-select-page';
+import DifficultySetupPage from './pages/difficulty-setup-page/difficulty-setup-page';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<BoxSelectPage />} />
           <Route path="/spirit" element={<PlayerSetupPage />} />
+          <Route path="/difficulty" element={<DifficultySetupPage />} />
           <Route path="/summary" element={<SummaryPage />} />
         </Routes>
       </BrowserRouter>

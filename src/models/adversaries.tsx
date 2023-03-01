@@ -1,10 +1,10 @@
 import brandenburg from '../images/adversaries/brandenburg.png';
-import england from '../images/adversaries/brandenburg.png';
-import sweden from '../images/adversaries/brandenburg.png';
-import france from '../images/adversaries/brandenburg.png';
-import habsburg from '../images/adversaries/brandenburg.png';
-import russia from '../images/adversaries/brandenburg.png';
-import scotland from '../images/adversaries/brandenburg.png';
+import england from '../images/adversaries/england.png';
+import sweden from '../images/adversaries/sweden.png';
+import france from '../images/adversaries/france.png';
+import habsburg from '../images/adversaries/habsburg.png';
+import russia from '../images/adversaries/russia.png';
+import scotland from '../images/adversaries/scotland.png';
 
 import { Box } from './box';
 
@@ -15,45 +15,50 @@ export interface Adversary {
   box: Box;
 }
 
+export interface Difficulty {
+  adversary: Adversary;
+  difficultyIndex: number;
+}
+
 export const allAdversaries: Adversary[] = [
   {
-    name: 'The Kingdom of Brandenburg-Prussia',
+    name: 'Brandenburg-Prussia',
     key: 'bp',
     difficulties: [1, 2, 4, 6, 7, 9, 10],
     box: Box.SI,
   },
   {
-    name: 'The Kingdom of England',
+    name: 'England',
     key: 'en',
     difficulties: [1, 3, 4, 6, 7, 9, 11],
     box: Box.SI,
   },
   {
-    name: 'The Kingdom of Sweden',
+    name: 'Sweden',
     key: 'sw',
     difficulties: [1, 2, 3, 5, 6, 7, 8],
     box: Box.SI,
   },
   {
-    name: 'The Kingdom of France (Plantation Colony)',
+    name: 'France',
     key: 'fr',
     difficulties: [2, 3, 5, 7, 8, 9, 10],
     box: Box.BC,
   },
   {
-    name: 'The Habsburg Monarchy (Livestock Colony)',
+    name: 'Habsburg',
     key: 'hb',
     difficulties: [2, 3, 5, 6, 8, 9, 10],
     box: Box.JE,
   },
   {
-    name: 'The Tsardom of Russia',
+    name: 'Russia',
     key: 'ru',
     difficulties: [1, 3, 4, 6, 7, 9, 11],
     box: Box.JE,
   },
   {
-    name: 'The Kingdom of Scotland',
+    name: 'Scotland',
     key: 'sc',
     difficulties: [1, 3, 4, 6, 7, 8, 10],
     box: Box.FF,
@@ -89,7 +94,7 @@ export function getRandomAdversary(
   adversaries: Adversary[],
   minDifficulty: number,
   maxDifficulty: number
-): { adversary: Adversary; difficultyIndex: number } {
+): Difficulty {
   const adversary = adversaries[Math.floor(Math.random() * adversaries.length)];
 
   const difficulties = adversary.difficulties

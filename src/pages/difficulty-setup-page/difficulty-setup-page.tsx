@@ -1,6 +1,7 @@
 import './difficulty-setup-page.scss';
 import {
   allAdversaries,
+  Difficulty,
   getImageForAdversary,
   getRandomAdversary,
 } from '../../models/adversaries';
@@ -9,15 +10,27 @@ import { BsCheckLg } from 'react-icons/bs';
 import { useState } from 'react';
 
 function DifficultySetupPage() {
-  const [difficulty] = useState(getRandomAdversary(allAdversaries, 0, 12));
+  const [difficulty] = useState<Difficulty | undefined>(
+    getRandomAdversary(allAdversaries, 0, 12)
+  );
 
   return (
-    <div className="body">
-      <img src={getImageForAdversary(difficulty.adversary)}></img>
-      <p>
-        {difficulty.adversary.name}{' '}
-        {difficulty.adversary.difficulties[difficulty.difficultyIndex]}
-      </p>
+    <div className="body difficulty-setup-page">
+      {difficulty && (
+        <>
+          <img
+            className="flag"
+            src={getImageForAdversary(difficulty.adversary)}
+          ></img>
+          <p>
+            {difficulty.adversary.name} {difficulty.difficultyIndex}
+          </p>
+          <p>
+            Difficulty{' '}
+            {difficulty.adversary.difficulties[difficulty.difficultyIndex]}
+          </p>
+        </>
+      )}
       {
         <IconButton
           icon={<BsCheckLg />}

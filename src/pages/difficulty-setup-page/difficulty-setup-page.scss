@@ -1,1 +1,15 @@
 @import '../../variables.scss';
+
+.difficulty-setup-page {
+    .flag {
+        width: 70%;
+        max-width: 400px;
+        margin: 20px
+    }
+
+    p {
+        color: white;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+}

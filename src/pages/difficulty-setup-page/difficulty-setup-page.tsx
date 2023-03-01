@@ -1,16 +1,17 @@
 import './difficulty-setup-page.scss';
 import {
   allAdversaries,
-  Difficulty,
+  IndexedAdversary,
   getImageForAdversary,
   getRandomAdversary,
+  getAdversaryUrlKey,
 } from '../../models/adversaries';
 import IconButton from '../../components/icon-button/icon-button';
 import { BsCheckLg } from 'react-icons/bs';
 import { useState } from 'react';
 
 function DifficultySetupPage() {
-  const [difficulty] = useState<Difficulty | undefined>(
+  const [difficulty] = useState<IndexedAdversary>(
     getRandomAdversary(allAdversaries, 0, 12)
   );
 
@@ -23,11 +24,10 @@ function DifficultySetupPage() {
             src={getImageForAdversary(difficulty.adversary)}
           ></img>
           <p>
-            {difficulty.adversary.name} {difficulty.difficultyIndex}
+            {difficulty.adversary.name} {difficulty.index}
           </p>
           <p>
-            Difficulty{' '}
-            {difficulty.adversary.difficulties[difficulty.difficultyIndex]}
+            Difficulty {difficulty.adversary.difficulties[difficulty.index]}
           </p>
         </>
       )}
@@ -36,8 +36,14 @@ function DifficultySetupPage() {
           icon={<BsCheckLg />}
           tooltip="Done"
           onClick={() => {
-            const params = window.location.search;
-            window.location.assign(`summary${params}`);
+            const adversaryKey = getAdversaryUrlKey(difficulty);
+            const params = window.location.search
+              .split('&')
+              .filter((param) => param !== '');
+            params.push(`a=${adversaryKey}`);
+            window.location.assign(
+              `summary${params.length === 1 ? '?' : ''}${params.join('&')}`
+            );
           }}
         ></IconButton>
       }

@@ -15,9 +15,9 @@ export interface Adversary {
   box: Box;
 }
 
-export interface Difficulty {
+export interface IndexedAdversary {
   adversary: Adversary;
-  difficultyIndex: number;
+  index: number;
 }
 
 export const allAdversaries: Adversary[] = [
@@ -94,7 +94,7 @@ export function getRandomAdversary(
   adversaries: Adversary[],
   minDifficulty: number,
   maxDifficulty: number
-): Difficulty {
+): IndexedAdversary {
   const adversary = adversaries[Math.floor(Math.random() * adversaries.length)];
 
   const difficulties = adversary.difficulties
@@ -113,5 +113,21 @@ export function getRandomAdversary(
 
   const difficulty =
     difficulties[Math.floor(Math.random() * difficulties.length)];
-  return { adversary, difficultyIndex: difficulty.index };
+  return { adversary, index: difficulty.index };
+}
+
+export function getAdversaryUrlKey(indexedAdversary: IndexedAdversary) {
+  return `${indexedAdversary.adversary.key}-${indexedAdversary.index}`;
+}
+
+export function adversaryFromUrlKey(key: string): IndexedAdversary {
+  const split = key.split('-');
+  const adversary =
+    allAdversaries.find((a) => a.key === split[0]) || allAdversaries[0];
+  const index = parseInt(split[1]);
+
+  return {
+    adversary,
+    index: index,
+  };
 }

@@ -2,7 +2,7 @@ import './summary-page.scss';
 import useQueryState from '../../hooks/use-query-state';
 import PlayerSummary from '../../components/player-summary/player-summary';
 import IconButton from '../../components/icon-button/icon-button';
-import { BsCheckLg } from 'react-icons/bs';
+import { BsArrowRepeat } from 'react-icons/bs';
 
 function SummaryPage() {
   const players = useQueryState().players;
@@ -13,8 +13,8 @@ function SummaryPage() {
         <PlayerSummary key={`player-${i}`} player={player} />
       ))}
       <IconButton
-        icon={<BsCheckLg />}
-        tooltip="Home"
+        icon={<BsArrowRepeat />}
+        tooltip="Restart"
         onClick={() => {
           window.location.assign(`/`);
         }}

@@ -17,6 +17,10 @@
 
   .title {
     color: $text-color;
-    margin-bottom: 0px;
+    margin: 30px 0px 0px -100px;
+    padding: 5px 20px 7px 20px;
+    background-color: $secondary-color;
+    transform: rotate(-5deg);
+    border: 3px solid black;
   }
 }

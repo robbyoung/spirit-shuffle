@@ -5,11 +5,22 @@
     height: 65px;
     font-size: 40px;
     border-radius: 20px;
+    border-width: 0px;
     background-color: $secondary-color;
+    border-style: none;
     
     display: flex;
     align-items: center;
     justify-content: center;
 
     cursor: pointer;
+
+    &:hover {
+        color: white;
+        background-color: $tertiary-color;
+    }
+
+    &:focus, &:focus-visible {
+        outline-color: $tertiary-color;
+    }
 }

@@ -14,6 +14,15 @@ export enum Box {
   HZ = 'Horizons of Spirit Island',
 }
 
+export const AllBoxes = [
+  spiritIsland,
+  branchAndClaw,
+  featherAndFlame,
+  jaggedEarth,
+  natureIncarnate,
+  horizons,
+];
+
 export function getImageForBox(board: Box): string {
   switch (board) {
     case Box.SI:

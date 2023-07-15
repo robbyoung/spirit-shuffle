@@ -4,16 +4,18 @@ import {
   IndexedAdversary,
   getImageForAdversary,
   getRandomAdversary,
-  getAdversaryUrlKey,
 } from '../../models/adversaries';
 import IconButton from '../../components/icon-button/icon-button';
 import { BsCheckLg } from 'react-icons/bs';
 import { useState } from 'react';
+import useQueryState from '../../hooks/use-query-state';
 
 function DifficultySetupPage() {
   const [difficulty] = useState<IndexedAdversary>(
     getRandomAdversary(allAdversaries, 0, 12)
   );
+
+  const { addAdversary } = useQueryState();
 
   return (
     <div className="body difficulty-setup-page">
@@ -35,16 +37,7 @@ function DifficultySetupPage() {
         <IconButton
           icon={<BsCheckLg />}
           tooltip="Done"
-          onClick={() => {
-            const adversaryKey = getAdversaryUrlKey(difficulty);
-            const params = window.location.search
-              .split('&')
-              .filter((param) => param !== '');
-            params.push(`a=${adversaryKey}`);
-            window.location.assign(
-              `summary${params.length === 1 ? '?' : ''}${params.join('&')}`
-            );
-          }}
+          onClick={() => addAdversary(difficulty, 'summary')}
         ></IconButton>
       }
     </div>

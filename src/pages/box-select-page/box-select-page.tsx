@@ -1,20 +1,17 @@
-import { Box, getBoxesUrlKey, validateBoxSelection } from '../../models/box';
+import { Box, validateBoxSelection } from '../../models/box';
 import { useState } from 'react';
 import BoxGrid from '../../components/box-grid/box-grid';
 import { BsCheckLg } from 'react-icons/bs';
 import './box-select-page.scss';
 import IconButton from '../../components/icon-button/icon-button';
+import useQueryState from '../../hooks/use-query-state';
 
 function BoxSelectPage() {
+  const { setBoxes } = useQueryState();
   const [selectedBoxes, setSelectedBoxes] = useState([Box.SI]);
   const [errorMessage, setErrorMessage] = useState<string | undefined>(
     undefined
   );
-
-  function navigateAway() {
-    const params = getBoxesUrlKey(selectedBoxes);
-    window.location.assign(`spirit?b=${params}`);
-  }
 
   function onSelectionChange(boxes: Box[]) {
     setSelectedBoxes(boxes);
@@ -36,7 +33,7 @@ function BoxSelectPage() {
           if (validationMessage != undefined) {
             setErrorMessage(validationMessage);
           } else {
-            navigateAway();
+            setBoxes(selectedBoxes, 'spirit');
           }
         }}
       />

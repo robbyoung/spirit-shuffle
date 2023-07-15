@@ -3,7 +3,7 @@ import { Spirit, spiritIncludedInBoxes } from '../models/spirit';
 import useQueryState from './use-query-state';
 
 function useAvailableSpirits(): Spirit[] {
-  const queryState = useQueryState();
+  const { state: queryState } = useQueryState();
 
   return useMemo(() => {
     const allSpirits = Object.values(Spirit);

@@ -11,10 +11,10 @@ import { Board } from '../../models/board';
 import { HiPencil } from 'react-icons/hi';
 import { BsFillPersonPlusFill, BsCheckLg } from 'react-icons/bs';
 import useQueryState from '../../hooks/use-query-state';
-import { getPlayerUrlKey } from '../../models/player';
 
 function PlayerSetupPage() {
-  const numPlayers = useQueryState().players.length;
+  const { state, addPlayer } = useQueryState();
+  const numPlayers = state.players.length;
   const availableSpirits = useAvailableSpirits();
   const availableBoards = useAvailableBoards();
 
@@ -53,38 +53,14 @@ function PlayerSetupPage() {
           <IconButton
             icon={<BsFillPersonPlusFill />}
             tooltip="Next Player"
-            onClick={() => {
-              const playerKey = getPlayerUrlKey({
-                spirit,
-                board,
-              });
-
-              const params = window.location.search
-                .split('&')
-                .filter((param) => param !== '');
-              params.push(`p${numPlayers + 1}=${playerKey}`);
-              window.location.search = params.join('&');
-            }}
+            onClick={() => addPlayer(numPlayers, spirit, board, 'spirit')}
           ></IconButton>
         )}
         {setupFinished && (
           <IconButton
             icon={<BsCheckLg />}
             tooltip="All Players Set Up"
-            onClick={() => {
-              const playerKey = getPlayerUrlKey({
-                spirit,
-                board,
-              });
-
-              const params = window.location.search
-                .split('&')
-                .filter((param) => param !== '');
-              params.push(`p${numPlayers + 1}=${playerKey}`);
-              window.location.assign(
-                `difficulty${params.length === 1 ? '?' : ''}${params.join('&')}`
-              );
-            }}
+            onClick={() => addPlayer(numPlayers, spirit, board, 'difficulty')}
           ></IconButton>
         )}
       </div>

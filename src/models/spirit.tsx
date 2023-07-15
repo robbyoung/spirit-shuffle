@@ -27,6 +27,14 @@ import eyes from '../images/spirits/eyes.png';
 import mud from '../images/spirits/mud.png';
 import heat from '../images/spirits/heat.png';
 import whirlwind from '../images/spirits/whirlwind.png';
+import behemoth from '../images/spirits/behemoth.png';
+import roots from '../images/spirits/roots.png';
+import hearth from '../images/spirits/hearth.png';
+import darkness from '../images/spirits/darkness.png';
+import sun from '../images/spirits/sun.png';
+import voice from '../images/spirits/voice.png';
+import waters from '../images/spirits/waters.png';
+import dances from '../images/spirits/dances.png';
 import { Box } from './box';
 
 export enum Spirit {
@@ -59,6 +67,14 @@ export enum Spirit {
   FMS = 'Fathomless Mud of the Swamp',
   RHS = 'Rising Heat of Stone and Sand',
   SBW = 'Sun-Bright Whirlwind',
+  EEB = 'Ember-Eyed Behemoth',
+  TRJ = 'Towering Roots of the Jungle',
+  HVL = 'Hearth-Vigil',
+  BDS = 'Breath of Darkness Down Your Spine',
+  RGS = 'Relentless Gaze of the Sun',
+  WVD = 'Wandering Voice Keens Delirium',
+  WWB = 'Wounded Waters Bleeding',
+  DUE = 'Dances Up Earthquakes',
 }
 
 export function getImageForSpirit(spirit: Spirit): string {
@@ -121,6 +137,22 @@ export function getImageForSpirit(spirit: Spirit): string {
       return heat;
     case Spirit.SBW:
       return whirlwind;
+    case Spirit.EEB:
+      return behemoth;
+    case Spirit.TRJ:
+      return roots;
+    case Spirit.HVL:
+      return hearth;
+    case Spirit.BDS:
+      return darkness;
+    case Spirit.RGS:
+      return sun;
+    case Spirit.WVD:
+      return voice;
+    case Spirit.WWB:
+      return waters;
+    case Spirit.DUE:
+      return dances;
   }
 }
 
@@ -154,6 +186,15 @@ export function spiritIncludedInBoxes(spirit: Spirit, boxes: Box[]): boolean {
     case Spirit.DDW:
     case Spirit.FPU:
       return boxes.includes(Box.FF);
+    case Spirit.EEB:
+    case Spirit.TRJ:
+    case Spirit.HVL:
+    case Spirit.BDS:
+    case Spirit.RGS:
+    case Spirit.WVD:
+    case Spirit.WWB:
+    case Spirit.DUE:
+      return boxes.includes(Box.NI);
     case Spirit.DTU:
     case Spirit.EWT:
     case Spirit.FMS:

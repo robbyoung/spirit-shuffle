@@ -63,6 +63,12 @@ export const allAdversaries: Adversary[] = [
     difficulties: [1, 3, 4, 6, 7, 8, 10],
     box: Box.FF,
   },
+  {
+    name: 'Habsburg Mining Expedition',
+    key: 'hm',
+    difficulties: [1, 3, 4, 5, 7, 9, 10],
+    box: Box.NI,
+  },
 ];
 
 export function getImageForAdversary(adversary: Adversary): string {
@@ -76,6 +82,7 @@ export function getImageForAdversary(adversary: Adversary): string {
     case 'fr':
       return france;
     case 'hb':
+    case 'hm':
       return habsburg;
     case 'ru':
       return russia;

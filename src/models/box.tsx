@@ -2,6 +2,7 @@ import spiritIsland from '../images/boxes/spirit-island.png';
 import branchAndClaw from '../images/boxes/branch-and-claw.png';
 import featherAndFlame from '../images/boxes/feather-and-flame.png';
 import jaggedEarth from '../images/boxes/jagged-earth.png';
+import natureIncarnate from '../images/boxes/nature-incarnate.png';
 import horizons from '../images/boxes/horizons.png';
 
 export enum Box {
@@ -9,6 +10,7 @@ export enum Box {
   BC = 'Branch and Claw',
   JE = 'Jagged Earth',
   FF = 'Feather and Flame',
+  NI = 'Nature Incarnate',
   HZ = 'Horizons of Spirit Island',
 }
 
@@ -22,6 +24,8 @@ export function getImageForBox(board: Box): string {
       return branchAndClaw;
     case Box.FF:
       return featherAndFlame;
+    case Box.NI:
+      return natureIncarnate;
     case Box.HZ:
       return horizons;
   }

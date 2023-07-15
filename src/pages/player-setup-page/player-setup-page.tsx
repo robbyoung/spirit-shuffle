@@ -1,5 +1,5 @@
 import './player-setup-page.scss';
-import { Spirit } from '../../models/spirit';
+import { Spirit, getImageForSpirit } from '../../models/spirit';
 import SpiritDeck from '../../components/spirit-deck/spirit-deck';
 import IconButton from '../../components/icon-button/icon-button';
 import { useState } from 'react';
@@ -7,10 +7,11 @@ import SpiritCardFilterOverlay from '../../components/spirit-card-filter-overlay
 import BoardDealer from '../../components/board-dealer/board-dealer';
 import useAvailableSpirits from '../../hooks/use-available-spirits';
 import useAvailableBoards from '../../hooks/use-available-boards';
-import { Board } from '../../models/board';
+import { Board, getImageForBoard } from '../../models/board';
 import { HiPencil } from 'react-icons/hi';
 import { BsFillPersonPlusFill, BsCheckLg } from 'react-icons/bs';
 import useQueryState from '../../hooks/use-query-state';
+import Loader from '../../components/loader/loader';
 
 function PlayerSetupPage() {
   const { state, addPlayer } = useQueryState();
@@ -29,50 +30,57 @@ function PlayerSetupPage() {
   const allowNextPlayer = setupFinished && numPlayers < 5;
 
   return (
-    <div className="body">
-      <h2 className="title">Player {numPlayers + 1}</h2>
-      <SpiritDeck
-        spirits={selectedSpirits}
-        onShuffle={() => setAllowEdits(false)}
-        onDealt={setSpirit}
-      />
-      <BoardDealer
-        availableBoards={availableBoards}
-        animate={spirit !== undefined}
-        onDealt={setBoard}
-      />
-      <div className="icon-bar">
-        {allowEdits && (
-          <IconButton
-            icon={<HiPencil />}
-            tooltip="Edit Deck Contents"
-            onClick={() => allowEdits && setShowFilterOverlay(true)}
-          ></IconButton>
-        )}
-        {allowNextPlayer && (
-          <IconButton
-            icon={<BsFillPersonPlusFill />}
-            tooltip="Next Player"
-            onClick={() => addPlayer(numPlayers, spirit, board, 'spirit')}
-          ></IconButton>
-        )}
-        {setupFinished && (
-          <IconButton
-            icon={<BsCheckLg />}
-            tooltip="All Players Set Up"
-            onClick={() => addPlayer(numPlayers, spirit, board, 'difficulty')}
-          ></IconButton>
+    <Loader
+      images={[
+        ...availableSpirits.map(getImageForSpirit),
+        ...availableBoards.map(getImageForBoard),
+      ]}
+    >
+      <div className="body">
+        <h2 className="title">Player {numPlayers + 1}</h2>
+        <SpiritDeck
+          spirits={selectedSpirits}
+          onShuffle={() => setAllowEdits(false)}
+          onDealt={setSpirit}
+        />
+        <BoardDealer
+          availableBoards={availableBoards}
+          animate={spirit !== undefined}
+          onDealt={setBoard}
+        />
+        <div className="icon-bar">
+          {allowEdits && (
+            <IconButton
+              icon={<HiPencil />}
+              tooltip="Edit Deck Contents"
+              onClick={() => allowEdits && setShowFilterOverlay(true)}
+            ></IconButton>
+          )}
+          {allowNextPlayer && (
+            <IconButton
+              icon={<BsFillPersonPlusFill />}
+              tooltip="Next Player"
+              onClick={() => addPlayer(numPlayers, spirit, board, 'spirit')}
+            ></IconButton>
+          )}
+          {setupFinished && (
+            <IconButton
+              icon={<BsCheckLg />}
+              tooltip="All Players Set Up"
+              onClick={() => addPlayer(numPlayers, spirit, board, 'difficulty')}
+            ></IconButton>
+          )}
+        </div>
+        {showFilterOverlay && (
+          <SpiritCardFilterOverlay
+            availableSpirits={availableSpirits}
+            selectedSpirits={selectedSpirits}
+            onDismiss={() => setShowFilterOverlay(false)}
+            onSelectionChange={setSelectedSpirits}
+          />
         )}
       </div>
-      {showFilterOverlay && (
-        <SpiritCardFilterOverlay
-          availableSpirits={availableSpirits}
-          selectedSpirits={selectedSpirits}
-          onDismiss={() => setShowFilterOverlay(false)}
-          onSelectionChange={setSelectedSpirits}
-        />
-      )}
-    </div>
+    </Loader>
   );
 }
 

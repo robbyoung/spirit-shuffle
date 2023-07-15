@@ -4,6 +4,7 @@ import boardC from '../images/boards/board-c.png';
 import boardD from '../images/boards/board-d.png';
 import boardE from '../images/boards/board-e.png';
 import boardF from '../images/boards/board-f.png';
+
 export enum Board {
   A = 'Board A',
   B = 'Board B',

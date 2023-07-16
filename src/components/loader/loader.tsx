@@ -25,15 +25,11 @@ export default function Loader({ images, children }: LoaderProps) {
       .catch((err) => console.log('Failed to load images', err));
   }, []);
 
-  return (
-    <div>
-      {loaded ? (
-        children
-      ) : (
-        <div className="loader">
-          <PuffLoader color="#D9D9D9" />
-        </div>
-      )}
+  return loaded ? (
+    <>{children}</>
+  ) : (
+    <div className="loader">
+      <PuffLoader color="#D9D9D9" />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import IconButton from '../../components/icon-button/icon-button';
 import { BsCheckLg } from 'react-icons/bs';
 import { useState } from 'react';
 import useQueryState from '../../hooks/use-query-state';
+import AdversaryWheel from '../../components/adversary-wheel/adversary-wheel';
 
 function DifficultySetupPage() {
   const [difficulty] = useState<IndexedAdversary>(
@@ -19,27 +20,7 @@ function DifficultySetupPage() {
 
   return (
     <div className="body difficulty-setup-page">
-      {difficulty && (
-        <>
-          <img
-            className="flag"
-            src={getImageForAdversary(difficulty.adversary)}
-          ></img>
-          <p>
-            {difficulty.adversary.name} {difficulty.index}
-          </p>
-          <p>
-            Difficulty {difficulty.adversary.difficulties[difficulty.index]}
-          </p>
-        </>
-      )}
-      {
-        <IconButton
-          icon={<BsCheckLg />}
-          tooltip="Done"
-          onClick={() => addAdversary(difficulty, 'summary')}
-        ></IconButton>
-      }
+      <AdversaryWheel availableAdversaries={allAdversaries} />
     </div>
   );
 }

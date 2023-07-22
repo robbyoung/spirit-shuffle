@@ -1,0 +1,80 @@
+@import '../../variables.scss';
+
+.adversary-wheel {
+    overflow:hidden;
+    position: relative;
+    margin: 1em auto;
+    border:  2px solid black;
+    padding: 0;
+    width: 32em; height: 32em;
+    border-radius: 50%;
+    list-style: none;
+
+    $max-adversaries: 8;
+
+    @for $n from 1 to $max-adversaries+1 {
+        &.slices-#{$n} {
+            @for $i from 0 to $n {
+                .slice-#{$i} {
+                    transform: rotate(#{calc($i * 360 / $n)}deg) skewY(#{calc(-360 / $n)}deg);
+                    overflow: hidden;
+                    position: absolute;
+                    top: 0; right: 0;
+                    width: 50%;
+                    height: 50%;
+                    transform-origin: 0% 100%;
+                    border: 1px solid black;
+                }
+            }
+
+            .slice-contents {
+                transform:  skewY(#{calc(360 / $n)}deg);
+
+                p {
+                    transform: rotate(#{calc(360 / $n / 2)}deg);
+                }
+            }
+        }
+    }
+
+    .slice-contents {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 60%;
+        top: 55%;
+    }
+
+    .slice-bp {
+        background-color: #0C0A07;
+    }
+
+    .slice-en {
+        background-color: #701810;
+    }
+
+    .slice-sw {
+        background-color: #1C364F;
+    }
+
+    .slice-fr {
+        background-color: #CBC6B7;
+    }
+
+    .slice-hb {
+        background-color: #B0A32C;
+    }
+
+    .slice-ru {
+        background-color: #7C2323;
+    }
+
+    .slice-sc {
+        background-color: #1A3B5D;
+    }
+
+    .slice-hm {
+        background-color: #56545E;
+    }
+}

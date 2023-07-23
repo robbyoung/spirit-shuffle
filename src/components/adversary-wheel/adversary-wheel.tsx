@@ -11,9 +11,13 @@ enum WheelState {
 
 interface AdversaryWheelProps {
   availableAdversaries: Adversary[];
+  onSelected: (adversary: Adversary) => void;
 }
 
-function AdversaryWheel({ availableAdversaries }: AdversaryWheelProps) {
+function AdversaryWheel({
+  availableAdversaries,
+  onSelected,
+}: AdversaryWheelProps) {
   const nodeRef = useRef(null);
   const [wheelState, setWheelState] = useState(WheelState.Ready);
 
@@ -33,7 +37,10 @@ function AdversaryWheel({ availableAdversaries }: AdversaryWheelProps) {
         nodeRef={nodeRef}
         classNames="wheel-spin"
         in={wheelState !== WheelState.Ready}
-        onEntered={() => setWheelState(WheelState.Done)}
+        onEntered={() => {
+          setWheelState(WheelState.Done);
+          onSelected(selected);
+        }}
         timeout={3000}
       >
         <ul

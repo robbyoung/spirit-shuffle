@@ -32,7 +32,7 @@
 
                 &.selected-#{$i} {
                     $slice-degrees: #{calc(360deg / $n)};
-                    $degrees-to-spin: #{calc(360deg * 5 + $slice-degrees * $i + $slice-degrees / 2)};
+                    $degrees-to-spin: #{calc(360deg * 5 + $slice-degrees * ($n - $i - 1) + $slice-degrees / 2)};
 
                     &.wheel-spin-enter-active {
                         animation: wheel-spin-#{$i}-#{$n} 3s 0ms cubic-bezier(0,0,0,.99);

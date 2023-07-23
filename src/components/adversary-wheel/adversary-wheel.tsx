@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Adversary } from '../../models/adversaries';
+import { Adversary, getRandomAdversary } from '../../models/adversaries';
 import { CSSTransition } from 'react-transition-group';
 import './adversary-wheel.scss';
 
@@ -16,6 +16,10 @@ interface AdversaryWheelProps {
 function AdversaryWheel({ availableAdversaries }: AdversaryWheelProps) {
   const nodeRef = useRef(null);
   const [wheelState, setWheelState] = useState(WheelState.Ready);
+
+  const selected = useState(getRandomAdversary(availableAdversaries, 0, 12))[0]
+    .adversary;
+  const selectedIndex = availableAdversaries.indexOf(selected);
 
   function handleWheelClick() {
     if (wheelState === WheelState.Ready) {
@@ -36,7 +40,7 @@ function AdversaryWheel({ availableAdversaries }: AdversaryWheelProps) {
           ref={nodeRef}
           className={`adversary-wheel slices-${availableAdversaries.length} ${
             wheelState !== WheelState.Ready ? 'disabled' : ''
-          }`}
+          } selected-${selectedIndex}`}
           onClick={handleWheelClick}
         >
           {availableAdversaries.map((adversary, i) => (
@@ -51,6 +55,7 @@ function AdversaryWheel({ availableAdversaries }: AdversaryWheelProps) {
           ))}
         </ul>
       </CSSTransition>
+      <div className="arrow-down" />
     </div>
   );
 }

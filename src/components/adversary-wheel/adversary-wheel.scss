@@ -1,4 +1,10 @@
+@use "sass:map";
 @import '../../variables.scss';
+
+$skew-map: (3: 30deg, 4: 0deg, 5: -18deg, 6: -29.709deg, 7: -38.428deg, 8: -45deg);
+$flag-scale-map: (3: 100%, 4: 100%, 5: 90%, 6: 80%, 7: 70%, 8: 70%);
+$flag-left-map: (3: 23px, 4: 20px, 5: 5px, 6: 0px, 7: -15px, 8: -20px);
+$flag-bottom-map: (3: 60px, 4: 40px, 5: 35px, 6: 30px, 7: 20px, 8: 25px);
 
 .adversary-wheel {
     overflow:hidden;
@@ -17,15 +23,18 @@
     $max-adversaries: 8;
 
     @for $n from 1 to $max-adversaries+1 {
+        $skew-degrees: map.get($skew-map, $n);
+
         &.slices-#{$n} {
             @for $i from 0 to $n {
                 .slice-#{$i} {
-                    transform: rotate(#{calc($i * 360 / $n)}deg) skewY(#{calc(-360 / $n)}deg);
+                    transform: rotate(#{calc($i * 360 / $n)}deg) skewY($skew-degrees);
                     overflow: hidden;
                     position: absolute;
-                    top: 0; right: 0;
-                    width: 50%;
-                    height: 50%;
+                    top: -25%;
+                    right: -25%;
+                    width: 75%;
+                    height: 75%;
                     transform-origin: 0% 100%;
                     border: 1px solid black;
                 }
@@ -50,11 +59,16 @@
             }
 
             .slice-contents {
-                transform:  skewY(#{calc(360 / $n)}deg);
+                transform: skewY(-$skew-degrees);
+                position: absolute;
+                bottom: map.get($flag-bottom-map, $n);
+                left: map.get($flag-left-map, $n);
+                margin-left: auto;
+                margin-right: auto;
 
                 img {
                     transform: rotate(#{calc(360 / $n / 2 + 90)}deg);
-                    scale: 80%;
+                    scale: map.get($flag-scale-map, $n);
                 }
             }
         }
@@ -62,15 +76,6 @@
 
     &.disabled {
         cursor: default;
-    }
-
-    .slice-contents {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        width: 70%;
-        top: 30%;
     }
 
     .slice-bp {

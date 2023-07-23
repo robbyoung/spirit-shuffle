@@ -1,5 +1,9 @@
 import { useRef, useState } from 'react';
-import { Adversary, getRandomAdversary } from '../../models/adversaries';
+import {
+  Adversary,
+  getImageForAdversary,
+  getRandomAdversary,
+} from '../../models/adversaries';
 import { CSSTransition } from 'react-transition-group';
 import './adversary-wheel.scss';
 
@@ -56,7 +60,7 @@ function AdversaryWheel({
               key={adversary.key}
             >
               <div className="slice-contents">
-                <p>{adversary.name}</p>
+                <img src={getImageForAdversary(adversary)}></img>
               </div>
             </li>
           ))}

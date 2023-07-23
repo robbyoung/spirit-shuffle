@@ -52,8 +52,9 @@
             .slice-contents {
                 transform:  skewY(#{calc(360 / $n)}deg);
 
-                p {
-                    transform: rotate(#{calc(360 / $n / 2)}deg);
+                img {
+                    transform: rotate(#{calc(360 / $n / 2 + 90)}deg);
+                    scale: 80%;
                 }
             }
         }
@@ -68,40 +69,40 @@
         display: flex;
         justify-content: center;
         text-align: center;
-        width: 60%;
-        top: 55%;
+        width: 70%;
+        top: 30%;
     }
 
     .slice-bp {
-        background-color: #0C0A07;
+        background-color: #A6A194;
     }
 
     .slice-en {
-        background-color: #701810;
+        background-color: #D9D0BF;
     }
 
     .slice-sw {
-        background-color: #1C364F;
+        background-color: #385C73;
     }
 
     .slice-fr {
-        background-color: #CBC6B7;
+        background-color: #BFBDB0;
     }
 
     .slice-hb {
-        background-color: #B0A32C;
+        background-color: #BFA939;
     }
 
     .slice-ru {
-        background-color: #7C2323;
+        background-color: #8C2B34;
     }
 
     .slice-sc {
-        background-color: #1A3B5D;
+        background-color: #365B73;
     }
 
     .slice-hm {
-        background-color: #56545E;
+        background-color: #BFA939;
     }
 }
 

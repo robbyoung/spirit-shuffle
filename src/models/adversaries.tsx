@@ -5,6 +5,7 @@ import france from '../images/adversaries/france.png';
 import habsburg from '../images/adversaries/habsburg.png';
 import russia from '../images/adversaries/russia.png';
 import scotland from '../images/adversaries/scotland.png';
+import habsburgMining from '../images/adversaries/habsburg-mining.png';
 
 import { Box } from './box';
 
@@ -82,12 +83,13 @@ export function getImageForAdversary(adversary: Adversary): string {
     case 'fr':
       return france;
     case 'hb':
-    case 'hm':
       return habsburg;
     case 'ru':
       return russia;
     case 'sc':
       return scotland;
+    case 'hm':
+      return habsburgMining;
     default:
       throw `Unknown adversary code ${adversary.key}`;
   }

@@ -24,7 +24,7 @@ function SpiritCard({
   return (
     <CSSTransition
       nodeRef={nodeRef}
-      classNames={`card-animate`}
+      classNames="card-animate"
       in={animate && notDone}
       onEntered={() => updateNotDone(false)}
       onExited={onFinished}

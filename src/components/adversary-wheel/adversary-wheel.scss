@@ -1,13 +1,19 @@
 @import '../../variables.scss';
 
+$deceleration: 0.8;
+
 .adversary-wheel {
     overflow:hidden;
     position: relative;
     margin: 1em auto;
     border:  2px solid black;
     padding: 0;
-    width: 32em; height: 32em;
+    width: 80vw;
+    height: 80vw;
+    max-width: 450px;
+    max-height: 450px;
     border-radius: 50%;
+    cursor: pointer;
     list-style: none;
 
     $max-adversaries: 8;
@@ -35,6 +41,23 @@
                 }
             }
         }
+    }
+
+    &.wheel-spin-enter-active {
+        animation: wheel-spin 3s 0ms cubic-bezier(0,0,0,.99);
+    }
+
+    &.wheel-spin-enter-active, &.wheel-spin-enter-done {
+        transform: rotate(1880deg);
+    }
+
+    &.disabled {
+        cursor: default;
+    }
+
+    @keyframes wheel-spin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(1880deg); }
     }
 
     .slice-contents {

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import useQueryState from '../../hooks/use-query-state';
 import AdversaryWheel from '../../components/adversary-wheel/adversary-wheel';
 import Loader from '../../components/loader/loader';
+import { DahanIcon, TownIcon } from '../../components/icon/icon';
 
 function DifficultySetupPage() {
   const { state, addAdversary } = useQueryState();
@@ -26,6 +27,9 @@ function DifficultySetupPage() {
           availableAdversaries={availableAdversaries}
           onSelected={setAdversary}
         />
+        <p>
+          Dahan icon <DahanIcon /> and town icon <TownIcon />
+        </p>
         {adversary !== undefined && (
           <>
             <p>{adversary.name}</p>
